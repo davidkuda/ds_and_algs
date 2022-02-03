@@ -25,4 +25,14 @@ public class PermutationTest {
   public void testPermutation() {
     Assert.assertTrue(pObj.isPermutation("Berlin", "linBer"));
   }
+
+  @Test
+  public void testIsNoPermutation() {
+    Assert.assertFalse(pObj.isPermutation("Berlin", "Bern"));
+  }
+
+  @Test
+  public void testCaseSensitivity() {
+    Assert.assertFalse(pObj.isPermutation("Berlin", "berlin"));
+  }
 }
