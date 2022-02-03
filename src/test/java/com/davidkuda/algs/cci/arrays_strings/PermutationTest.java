@@ -5,22 +5,24 @@ import org.junit.Test;
 
 public class PermutationTest {
 
+  Permutation pObj = new Permutation();
+
   @Test
   public void testDifferentLength() {
 
     String s1 = "Hello";
     String s2 = "World!";
-    boolean p = Permutation.isPermutation(s1, s2);
+    boolean p = pObj.isPermutation(s1, s2);
     Assert.assertFalse(p);
   }
 
   @Test
   public void testSameWord() {
-    Assert.assertTrue(Permutation.isPermutation("Stratocaster", "Stratocaster"));
+    Assert.assertTrue(pObj.isPermutation("Stratocaster", "Stratocaster"));
   }
 
   @Test
   public void testPermutation() {
-    Assert.assertTrue(Permutation.isPermutation("Berlin", "linBer"));
+    Assert.assertTrue(pObj.isPermutation("Berlin", "linBer"));
   }
 }
