@@ -33,7 +33,6 @@ public class URLifier {
     }
 
     String sTransformed = new String(charArr);
-    System.out.println("sTransformed: " + sTransformed);
     return sTransformed;
   }
 
