@@ -13,4 +13,12 @@ public class URLifierTest {
     Assert.assertEquals(expected, actual);
   }
   
+  @Test
+  public void testUrlifierSimple() {
+    URLifier u = new URLifier();
+    String actual = u.urlify("Hello World", 13);
+    String expected = "Hello%20World";
+    Assert.assertEquals(expected, actual);
+  }
+  
 }
