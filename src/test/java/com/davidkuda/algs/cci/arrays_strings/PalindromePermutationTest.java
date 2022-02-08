@@ -29,5 +29,14 @@ public class PalindromePermutationTest {
     Assert.assertFalse(b);
   }
 
+  @Test
+  public void furtherTests() {
+    PalindromePermutation p = new PalindromePermutation();
+
+    Assert.assertFalse(p.isPalindromePermutation("Dave K David"));
+    Assert.assertTrue(p.isPalindromePermutation("Dave K vead"));
+    Assert.assertTrue(p.isPalindromePermutation("this is sparta is this sparta?"));
+  }
+
   
 }
