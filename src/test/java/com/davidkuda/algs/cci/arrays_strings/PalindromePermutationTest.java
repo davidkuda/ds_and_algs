@@ -11,7 +11,7 @@ public class PalindromePermutationTest {
     PalindromePermutation p = new PalindromePermutation();
 
     // when:
-    boolean b = p.isPermutation("David K David");
+    boolean b = p.isPalindromePermutation("David K David");
 
     // then:
     Assert.assertTrue(b);
@@ -23,7 +23,7 @@ public class PalindromePermutationTest {
     PalindromePermutation p = new PalindromePermutation();
 
     // when:
-    boolean b = p.isPermutation("Dave K David");
+    boolean b = p.isPalindromePermutation("Dave K David");
 
     // then:
     Assert.assertFalse(b);
