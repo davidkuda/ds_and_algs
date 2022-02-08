@@ -2,7 +2,7 @@ package com.davidkuda.algs.cci.arrays_strings;
 
 public class PalindromePermutation {
 
-  boolean[] palindromometer = initPalindromometer();
+  boolean[] palindromometer;
 
   // Set all values in palindrometer to true.
   private boolean[] initPalindromometer() {
@@ -22,6 +22,7 @@ public class PalindromePermutation {
    * @return true if t is a palindrome permutation
    */
   public boolean isPalindromePermutation(String s) {
+    palindromometer = initPalindromometer();
     char[] charArr = s.toCharArray();
 
 
@@ -48,6 +49,8 @@ public class PalindromePermutation {
   private boolean checkPalindrometer() {
     int falseCount = 0;
     for (boolean b : palindromometer) {
+      System.out.println(b);
+      System.out.println("");
       if (b == false) {
         falseCount++;
       }
