@@ -1,4 +1,4 @@
-package com.davidkuda.algs4.fundamentals;
+package com.davidkuda.algs.algs4.fundamentals;
 
 /**
  * Array will always be between 25% and 100% full
