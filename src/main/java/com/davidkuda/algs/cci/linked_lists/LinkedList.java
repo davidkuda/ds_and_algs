@@ -1,5 +1,9 @@
 package com.davidkuda.algs.cci.linked_lists;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+
 public class LinkedList<Item> {
 
   Node first;
@@ -54,6 +58,26 @@ public class LinkedList<Item> {
     oldLast.next = last;
     size++;
   }
+
+  public void removeDups() {
+    HashSet<Item> set = new HashSet<Item>();
+
+    Node current = first;
+    Node previous = null;
+
+    while (current != null) {
+      if (set.contains(current.item)) {
+        previous.next = current.next;
+      } else {
+        set.add(current.item);
+        previous = current;
+      }
+    
+      current = current.next;
+    }
+  }
+
+  private void removeNode() {}
 
   private void traverse() {
     for (Node x = first; x != null; x = x.next) {
