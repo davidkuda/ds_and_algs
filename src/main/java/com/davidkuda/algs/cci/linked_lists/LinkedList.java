@@ -2,11 +2,11 @@ package com.davidkuda.algs.cci.linked_lists;
 
 public class LinkedList<Item> {
 
-  private Node first;
-  private Node last;
+  Node first;
+  Node last;
   private int size;
 
-  private class Node {
+  class Node {
     Item item;
     Node next;
   }
