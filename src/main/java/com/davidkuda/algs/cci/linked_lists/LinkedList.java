@@ -25,7 +25,8 @@ public class LinkedList<Item> {
       first = new Node();
       first.item = item;
       last = first;
-      size = 1;
+      size++;
+      return;
     }
 
     Node oldFirst = first;
