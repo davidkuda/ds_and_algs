@@ -13,11 +13,19 @@ public class LinkedListTest {
     l.insertAtEnd("Second");
     l.insertAtEnd("Second");
     l.insertAtEnd("Third");
-
-    Assert.assertEquals(4, l.getSize());
+    l.insertAtEnd("Third");
+    l.insertAtEnd("Fourth");
+    l.insertAtEnd("Fifth");
+    l.insertAtEnd("First");
+    l.insertAtEnd("Third");
 
     l.removeDups();
-    Assert.assertEquals(3, l.getSize());
+
+    Assert.assertEquals("First", l.first.item);
+    Assert.assertEquals("Second", l.first.next.item);
+    Assert.assertEquals("Third", l.first.next.next.item);
+    Assert.assertEquals("Fourth", l.first.next.next.next.item);
+    Assert.assertEquals("Fifth", l.first.next.next.next.next.item);
   }
   
 }
