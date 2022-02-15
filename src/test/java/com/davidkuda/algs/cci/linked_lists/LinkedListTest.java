@@ -7,6 +7,8 @@ public class LinkedListTest {
 
   @Test
   public void testRemoveDups() {
+
+    // given:
     LinkedList<String> l = new LinkedList<String>();
 
     l.insertAtBeginning("First");
@@ -19,8 +21,10 @@ public class LinkedListTest {
     l.insertAtEnd("First");
     l.insertAtEnd("Third");
 
+    // when:
     l.removeDups();
 
+    // then:
     Assert.assertEquals("First", l.first.item);
     Assert.assertEquals("Second", l.first.next.item);
     Assert.assertEquals("Third", l.first.next.next.item);
