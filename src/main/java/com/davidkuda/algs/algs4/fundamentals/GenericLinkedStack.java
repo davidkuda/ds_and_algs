@@ -3,7 +3,7 @@ package com.davidkuda.algs.algs4.fundamentals;
 public class GenericLinkedStack<Item> {
 
   int size = 0;
-  Node top;
+  private Node top = null;
 
   private class Node {
     Item item;
