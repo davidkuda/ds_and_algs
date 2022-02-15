@@ -2,7 +2,6 @@ package com.davidkuda.algs.algs4.fundamentals;
 
 public class GenericLinkedStack<Item> {
 
-  int size = 0;
   private Node top = null;
 
   private class Node {
@@ -11,7 +10,7 @@ public class GenericLinkedStack<Item> {
   }
 
   public boolean isEmpty() {
-    return size == 0;
+    return top == null;
   }
 
   public void push(Item i) {
@@ -19,13 +18,11 @@ public class GenericLinkedStack<Item> {
     n.item = i;
     n.next = top;
     top = n;
-    size++;
   }
 
   public Item pop() {
     Item tempTop = top.item;
     top = top.next;
-    size--;
     return tempTop;
   }
 }
