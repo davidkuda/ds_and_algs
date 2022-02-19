@@ -2,9 +2,10 @@ package com.davidkuda.algs.cci.linked_lists;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
 
-public class LinkedList<Item> {
+public class LinkedList<Item> implements Iterable<Item> {
 
   Node first;
   Node last;
@@ -74,6 +75,32 @@ public class LinkedList<Item> {
       }
     
       current = current.next;
+    }
+  }
+
+  @Override
+  public LinkedListIterator iterator() {
+    return new LinkedListIterator(first);
+  }
+
+  private class LinkedListIterator implements Iterator {
+
+    Node current;
+
+    public LinkedListIterator(Node first) {
+      current = first;
+    }
+
+    @Override
+    public boolean hasNext() {
+      return current != null;
+    }
+
+    @Override
+    public Item next() {
+      Item currentValue = current.item;      
+      current = current.next;
+      return currentValue;
     }
   }
 }
