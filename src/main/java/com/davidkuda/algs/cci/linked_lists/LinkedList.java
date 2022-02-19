@@ -76,13 +76,4 @@ public class LinkedList<Item> {
       current = current.next;
     }
   }
-
-  private void removeNode() {}
-
-  private void traverse() {
-    for (Node x = first; x != null; x = x.next) {
-      System.out.println(x.item);
-    }
-  }
-  
 }
