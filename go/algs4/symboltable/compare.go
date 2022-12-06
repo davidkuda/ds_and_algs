@@ -8,6 +8,19 @@ type Date struct {
 	Year  int
 }
 
+/**
+Standard Recipe for object.equals(object):
+- check same address first, avoid a lot of code if true
+- check against nil
+- check type
+- compare each field
+  - if field is primitive type, use ==
+  - if field is object, use its equals method
+  - if field is array, check each value of array
+
+Best Practices:
+
+*/
 func (x *Date) equals(y *Date) bool {
 	if x == y {
 		return true
