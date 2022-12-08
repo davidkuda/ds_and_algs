@@ -2,6 +2,12 @@ package main
 
 import "fmt"
 
+// elementary implementation:
+// Simple, linear, unordered Symbol Table ("associative array" abstraction)
+// API:
+// - Search(key): Scan all key-value-pairs and return if key matches
+// - Insert(node): search, update if key exists, place on first position if not
+// time complexity: Search O(n), Insert O(n)
 type SequentialSearchSymbolTable struct {
 	head *node
 	tail *node
