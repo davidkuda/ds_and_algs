@@ -53,3 +53,13 @@ func (bst *binarySearchTree) Min() {}
 
 // Largest key in symbol table: Move to the right most node
 func (bst *binarySearchTree) Max() {}
+
+// Largest key <= to a given key
+func (bst *binarySearchTree) Floor(key string) string {
+	return ""
+}
+
+// Smallest key >= to a given key
+func (bst *binarySearchTree) Ceiling(key string) string {
+	return ""
+}
