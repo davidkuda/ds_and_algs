@@ -27,6 +27,7 @@ func (bst *binarySearchTree) get(key string) (int, bool) {
 }
 
 // search for key, update if there, add new node if not
+// Tree shape depends on order of insertion. Worst case: No difference to linked list.
 func (bst *binarySearchTree) Put(key string, value int) {
 	bst.root = bst.put(bst.root, key, value)
 }
