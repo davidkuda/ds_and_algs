@@ -49,10 +49,26 @@ func (bst *binarySearchTree) put(n *node, key string, val int) *node {
 }
 
 // Smallest key in symbol table: Move to the left most node
-func (bst *binarySearchTree) Min() {}
+func (bst *binarySearchTree) Min() string {
+	n := bst.root
+	var previous *node
+	for n != nil {
+		previous = n
+		n = n.left
+	}
+	return previous.key
+}
 
 // Largest key in symbol table: Move to the right most node
-func (bst *binarySearchTree) Max() {}
+func (bst *binarySearchTree) Max() string {
+	n := bst.root
+	var previous *node
+	for n != nil {
+		previous = n
+		n = n.right
+	}
+	return previous.key
+}
 
 // Largest key <= to a given key
 func (bst *binarySearchTree) Floor(key string) string {
