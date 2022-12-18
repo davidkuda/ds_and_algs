@@ -47,3 +47,9 @@ func (bst *binarySearchTree) put(n *node, key string, val int) *node {
 	}
 	return n
 }
+
+// Smallest key in symbol table: Move to the left most node
+func (bst *binarySearchTree) Min() {}
+
+// Largest key in symbol table: Move to the right most node
+func (bst *binarySearchTree) Max() {}
