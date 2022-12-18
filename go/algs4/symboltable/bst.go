@@ -33,7 +33,7 @@ func (bst *binarySearchTree) Put(key string, value int) {
 
 func (bst *binarySearchTree) put(n *node, key string, val int) *node {
 	if n == nil {
-		newNode := node{key, val, nil, nil}
+		newNode := node{key: key, value: val}
 		return &newNode
 	}
 	if key < n.key {
