@@ -21,16 +21,18 @@ public class LinkedQueueOfStrings {
   }
 
   public void enqueue(String item) {
-    Node oldLast = last;
-
-    last = new Node();
-    last.item = item;
-    last.next = null;
+    Node n = new Node();
+    n.item = item;
+    n.next = null;
 
     if (isEmpty()) {
-      first = last;
-    } else  {
-      oldLast.next = last;
+      first = n;
+      last = n;
+      size++;
+    } else {
+      last.next = n;
+      last = n;
+      size++;
     }
   }
 
