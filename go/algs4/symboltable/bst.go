@@ -25,3 +25,24 @@ func (bst *binarySearchTree) get(key string) (int, bool) {
 	}
 	return 0, false
 }
+
+// search for key, update if there, add new node if not
+func (bst *binarySearchTree) Put(key string, value int) {
+	bst.root = bst.put(bst.root, key, value)
+}
+
+func (bst *binarySearchTree) put(n *node, key string, val int) *node {
+	if n == nil {
+		newNode := node{key, val, nil, nil}
+		return &newNode
+	}
+	if key < n.key {
+		n.left = bst.put(n.left, key, val)
+	} else if key > n.key {
+		n.right = bst.put(n.right, key, val)
+	} else { // key == n.key
+		n.value = val
+		return n
+	}
+	return n
+}
