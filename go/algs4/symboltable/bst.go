@@ -71,8 +71,34 @@ func (bst *binarySearchTree) Max() string {
 }
 
 // Largest key <= to a given key
-func (bst *binarySearchTree) Floor(key string) string {
-	return ""
+// Three cases:
+// 1) k == node -> floor is k
+// 2) k < node -> floor is in the left subtree
+// 3) k > node -> if k < node in right subtree, right subtree, else node
+func (bst *binarySearchTree) Floor(key string) (string, bool) {
+	x := bst.floor(bst.root, key)
+	if x == nil {
+		return "", false
+	}
+	return x.key, true
+}
+
+func (bst *binarySearchTree) floor(x *node, key string) *node {
+	if x == nil {
+		return nil
+	}
+
+	if x.key == key {
+		return x
+	} else if key < x.key {
+		return bst.floor(x.left, key)
+	}
+	t := bst.floor(x.right, key)
+	if t != nil {
+		return t
+	} else {
+		return x
+	}
 }
 
 // Smallest key >= to a given key

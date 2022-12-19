@@ -31,6 +31,24 @@ func TestMax(t *testing.T) {
 	}
 }
 
+func TestFloor(t *testing.T) {
+	bst := prepareBst()
+	k1, _ := bst.Floor("charlie")
+	if k1 != "charlie" {
+		t.Errorf("Floor was not succesful. Expected: charlie; Received: %s", k1)
+	}
+
+	k2, _ := bst.Floor("delta")
+	if k2 != "charlie" {
+		t.Errorf("Floor was not succesful. Expected: charlie; Received: %s", k2)
+	}
+
+	k3, _ := bst.Floor("tango")
+	if k3 != "sierra" {
+		t.Errorf("Floor was not succesful. Expected: charlie; Received: %s", k3)
+	}
+}
+
 func prepareBst() binarySearchTree {
 	newNode := node{"root", 42, nil, nil}
 	bst := binarySearchTree{&newNode}
