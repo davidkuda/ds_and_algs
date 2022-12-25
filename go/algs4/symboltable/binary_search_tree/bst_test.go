@@ -5,11 +5,20 @@ import (
 )
 
 func TestPut(t *testing.T) {
-	newNode := node{"root", 42, nil, nil}
+	newNode := node{key: "root", value: 42, count: 1}
 	bst := binarySearchTree{&newNode}
 	bst.Put("alpha", 108)
 	bst.Put("bravo", 108)
 	bst.Put("charlie", 108)
+}
+
+func TestCount(t *testing.T) {
+	bst := prepareBst()
+	actual := bst.root.count
+	expected := 7
+	if actual != expected {
+		t.Errorf("Wrong count, expected %d, got %d", expected, actual)
+	}
 }
 
 func TestMin(t *testing.T) {
@@ -66,7 +75,7 @@ func TestKeys(t *testing.T) {
 }
 
 func prepareBst() binarySearchTree {
-	newNode := node{"root", 42, nil, nil}
+	newNode := node{key: "root", value: 42, count: 1}
 	bst := binarySearchTree{&newNode}
 	bst.Put("alpha", 108)
 	bst.Put("bravo", 108)

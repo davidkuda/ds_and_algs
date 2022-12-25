@@ -9,6 +9,23 @@ type node struct {
 	value int
 	left  *node
 	right *node
+	count int
+}
+
+func (bst *binarySearchTree) Size() int {
+	if bst.root == nil {
+		return 0
+	} else {
+		return bst.root.count
+	}
+}
+
+func (n *node) size() int {
+	if n == nil {
+		return 0
+	} else {
+		return n.count
+	}
 }
 
 // return value and true if key in bst, else return 0 and false
@@ -34,7 +51,7 @@ func (bst *binarySearchTree) Put(key string, value int) {
 
 func (bst *binarySearchTree) put(n *node, key string, val int) *node {
 	if n == nil {
-		newNode := node{key: key, value: val}
+		newNode := node{key: key, value: val, count: 1}
 		return &newNode
 	}
 	if key < n.key {
@@ -45,8 +62,11 @@ func (bst *binarySearchTree) put(n *node, key string, val int) *node {
 		n.value = val
 		return n
 	}
+	n.count = 1 + n.left.size() + n.right.size()
 	return n
 }
+
+func (bst *binarySearchTree) Delete() {}
 
 func (bst *binarySearchTree) Keys() *Queue[string] {
 	q := NewQueue[string]()
