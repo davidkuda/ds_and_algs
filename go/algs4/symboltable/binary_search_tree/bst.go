@@ -68,6 +68,23 @@ func (bst *binarySearchTree) put(n *node, key string, val int) *node {
 
 func (bst *binarySearchTree) Delete() {}
 
+func (bst *binarySearchTree) Rank(key string) int {
+	return bst.rank(key, bst.root)
+}
+
+func (bst *binarySearchTree) rank(key string, n *node) int {
+	if n == nil {
+		return 0
+	}
+	if key < n.key {
+		return bst.rank(key, n.left)
+	} else if key > n.key {
+		return 1 + n.left.size() + bst.rank(key, n.right)
+	} else { // key == n.key
+		return n.left.size()
+	}
+}
+
 func (bst *binarySearchTree) Keys() *Queue[string] {
 	q := NewQueue[string]()
 	bst.inorder(bst.root, q)

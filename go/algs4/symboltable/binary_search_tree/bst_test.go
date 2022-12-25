@@ -21,6 +21,15 @@ func TestCount(t *testing.T) {
 	}
 }
 
+func TestRank(t *testing.T) {
+	bst := prepareBst()
+	r := bst.Rank("delta")
+	expected := 3
+	if r != expected {
+		t.Errorf("got wrong rank: expected %d, got %d", expected, r)
+	}
+}
+
 func TestMin(t *testing.T) {
 	bst := prepareBst()
 	min := bst.Min()
