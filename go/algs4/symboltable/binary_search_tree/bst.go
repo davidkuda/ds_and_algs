@@ -1,4 +1,4 @@
-package main
+package bst
 
 type binarySearchTree struct {
 	root *node
