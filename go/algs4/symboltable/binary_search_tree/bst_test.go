@@ -56,7 +56,7 @@ func TestKeys(t *testing.T) {
 		if !ok {
 			break
 		}
-		v, _ := bst.get(key)
+		v, _ := bst.Get(key)
 		sum += v
 	}
 	expected := 42 + 6*108

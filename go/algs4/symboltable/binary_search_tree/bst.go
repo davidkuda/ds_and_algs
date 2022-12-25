@@ -12,7 +12,7 @@ type node struct {
 }
 
 // return value and true if key in bst, else return 0 and false
-func (bst *binarySearchTree) get(key string) (int, bool) {
+func (bst *binarySearchTree) Get(key string) (int, bool) {
 	var cur *node = bst.root
 	for cur != nil {
 		if cur.key == key {
