@@ -48,6 +48,21 @@ func (bst *binarySearchTree) put(n *node, key string, val int) *node {
 	return n
 }
 
+func (bst *binarySearchTree) Keys() *Queue[string] {
+	q := NewQueue[string]()
+	bst.inorder(bst.root, q)
+	return q
+}
+
+func (bst *binarySearchTree) inorder(n *node, q *Queue[string]) {
+	if n == nil {
+		return
+	}
+	bst.inorder(n.left, q)
+	q.Enqueue(n.key)
+	bst.inorder(n.right, q)
+}
+
 // Smallest key in symbol table: Move to the left most node
 func (bst *binarySearchTree) Min() string {
 	n := bst.root
