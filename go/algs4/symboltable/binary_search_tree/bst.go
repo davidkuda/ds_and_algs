@@ -145,13 +145,16 @@ func (n *node) min() *node {
 
 // Largest key in symbol table: Move to the right most node
 func (bst *binarySearchTree) Max() string {
-	n := bst.root
+	return bst.root.max().key
+}
+
+func (n *node) max() *node {
 	var previous *node
 	for n != nil {
 		previous = n
 		n = n.right
 	}
-	return previous.key
+	return previous
 }
 
 // Largest key <= to a given key
