@@ -131,13 +131,16 @@ func (bst *binarySearchTree) inorder(n *node, q *Queue[string]) {
 
 // Smallest key in symbol table: Move to the left most node
 func (bst *binarySearchTree) Min() string {
-	n := bst.root
+	return bst.root.min().key
+}
+
+func (n *node) min() *node {
 	var previous *node
 	for n != nil {
 		previous = n
 		n = n.left
 	}
-	return previous.key
+	return previous
 }
 
 // Largest key in symbol table: Move to the right most node
