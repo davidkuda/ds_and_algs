@@ -12,6 +12,46 @@ func TestPut(t *testing.T) {
 	bst.Put("charlie", 108)
 }
 
+func TestDelete(t *testing.T) {
+	root := node{key: "07"}
+	bst := binarySearchTree{root: &root}
+	bst.Put("04", 42)
+	bst.Put("05", 42)
+	bst.Put("06a", 42)
+	bst.Put("06", 42)
+	bst.Put("06b", 42)
+	bst.Put("03", 42)
+	bst.Put("09", 42)
+	bst.Put("08", 42)
+	bst.Put("10", 42)
+
+	if bst.root.left.right.key != "05" {
+		t.Error("Something wrong with the bst")
+	}
+
+	bst.Delete("05")
+
+	if bst.root.left.right.key != "06" {
+		t.Error("Something wrong with the bst")
+	}
+
+	if bst.root.left.right.right.left.key != "06a" {
+		t.Error("Something wrong with the bst!")
+	}
+
+	if bst.Size() != 9 {
+		t.Errorf("Size is incorrect, expected 7, got %d", bst.Size())
+	}
+
+	val, ok := bst.Get("05")
+	if ok != false {
+		t.Error("Key 05 should be deleted!")
+	}
+	if val != 0 {
+		t.Errorf("Val should be 0, got %d instead", val)
+	}
+}
+
 func TestDeleteMin(t *testing.T) {
 	bst := prepareAnotherBst()
 	oldSize := bst.root.size()
@@ -78,7 +118,7 @@ func TestMin(t *testing.T) {
 	bst := prepareBst()
 	min := bst.Min()
 	t.Log(min)
-	if min != "bravo" {
+	if min != "alpha" {
 		t.Errorf("Incorrect min! Expected: \"alpha\"; Received: \"%s\"", min)
 	}
 }

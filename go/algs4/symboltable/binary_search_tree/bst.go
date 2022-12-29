@@ -80,7 +80,61 @@ func (bst *binarySearchTree) put(n *node, key string, val int) *node {
 	return n
 }
 
-func (bst *binarySearchTree) Delete() {}
+/*
+Hibbard Deletion:
+Case 0:
+
+	    Node to be deleted has no children;
+		Set parent link to nil;
+		update counts
+
+Case 1:
+
+	    Node has 1 child;
+		Replace parent link with child link (like DeleteMin / DeleteMax);
+		Update count.
+
+Case 2:
+
+	    Node has two children;
+		Find min in right tree, delete it, and replace current link with min of right tree;
+	    update count.
+*/
+func (bst *binarySearchTree) Delete(key string) {
+	bst.root = delete(bst.root, key)
+}
+
+func delete(n *node, key string) *node {
+	if n == nil {
+		return nil
+	}
+
+	// search for key:
+	if n.key < key {
+		delete(n.right, key)
+	} else if n.key > key {
+		delete(n.left, key)
+	} else {
+		// no right child
+		if n.right == nil {
+			return n.left
+		}
+		// no left child
+		if n.left == nil {
+			return n.right
+		}
+
+		// replace with successor
+		r := n.right
+		n = r.min()
+		deleteMin(r)
+		n.right = r
+
+	}
+	// update count
+	n.count = 1 + n.left.size() + n.right.size()
+	return n
+}
 
 func (bst *binarySearchTree) DeleteMin() {
 	bst.root = deleteMin(bst.root)
