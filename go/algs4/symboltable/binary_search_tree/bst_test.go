@@ -32,6 +32,30 @@ func TestDeleteMin(t *testing.T) {
 	}
 }
 
+func TestDeleteMax(t *testing.T) {
+	bst := prepareAnotherBst()
+	oldSize := bst.root.size()
+	
+	max := bst.Max()
+	expMax := "zvb"
+	if max != expMax {
+		t.Errorf("Incorrect max! Expected: \"%s\"; Received: \"%s\"", expMax, max)
+	}
+
+	bst.DeleteMax()
+
+	newMax := bst.Max()
+	if max == newMax {
+		t.Error("min was not deleted")
+	}
+	if newMax != "zva" {
+		t.Error("expected zva, got sth else")
+	}
+	if oldSize != bst.root.size()+1 {
+		t.Error("Wrong Size of BST!")
+	}
+}
+
 func TestCount(t *testing.T) {
 	bst := prepareBst()
 	actual := bst.root.count
@@ -130,5 +154,8 @@ func prepareAnotherBst() binarySearchTree {
 	bst.Put("a1", 108)
 	bst.Put("a2", 108)
 	bst.Put("a1a", 108)
+	bst.Put("zv", 108)
+	bst.Put("zva", 108)
+	bst.Put("zvb", 108)
 	return bst
 }

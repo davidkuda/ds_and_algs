@@ -84,6 +84,19 @@ func deleteMin(n *node) *node {
 	return n
 }
 
+func (bst *binarySearchTree) DeleteMax() {
+	bst.root = deleteMax(bst.root)
+}
+
+func deleteMax(n *node) *node {
+	if n.right == nil {
+		return n.left
+	}
+	n.right = deleteMax(n.right)
+	n.count = 1 + n.left.size() + n.right.size()
+	return n
+}
+
 func (bst *binarySearchTree) Rank(key string) int {
 	return bst.rank(key, bst.root)
 }
