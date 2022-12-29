@@ -12,40 +12,67 @@ func TestPut(t *testing.T) {
 	bst.Put("charlie", 108)
 }
 
+// n has left child
+func TestDeleteHasLeftChild(t *testing.T) {}
+
+// n has right child
+func TestDeleteHasRightChild(t *testing.T) {}
+
+// n has two childs
 func TestDelete(t *testing.T) {
 	root := node{key: "07"}
 	bst := binarySearchTree{root: &root}
 	bst.Put("04", 42)
 	bst.Put("05", 42)
-	bst.Put("06a", 42)
 	bst.Put("06", 42)
-	bst.Put("06b", 42)
 	bst.Put("03", 42)
 	bst.Put("09", 42)
 	bst.Put("08", 42)
 	bst.Put("10", 42)
+	/*
+	        07
+		  /     \
+		04      09
+	  /   \    /  \
+	03    05  08   10
+        /   \
+	  04a    06
+	*/
 
-	if bst.root.left.right.key != "05" {
-		t.Error("Something wrong with the bst")
+	if bst.root.left.key != "04" {
+		t.Fatal("targeted node should have key 04")
 	}
 
-	bst.Delete("05")
-
-	if bst.root.left.right.key != "06" {
-		t.Error("Something wrong with the bst")
+	if bst.root.left.left == nil || bst.root.left.right == nil {
+		t.Fatal("targeted node should have two children")
 	}
 
-	if bst.root.left.right.right.left.key != "06a" {
-		t.Error("Something wrong with the bst!")
+	bst.Delete("04")
+	/*
+	        07
+		  /     \
+		04a     09
+	  /   \    /  \
+	03    05  08   10
+            \
+	         06
+	*/
+
+	if bst.root.left.key != "04a" {
+		t.Error("Deletion yielded unexpected result")
 	}
 
-	if bst.Size() != 9 {
+	if bst.root.left.right.left != nil {
+		t.Error("Deletion yileded unexpected result")
+	}
+
+	if bst.Size() != 7 {
 		t.Errorf("Size is incorrect, expected 7, got %d", bst.Size())
 	}
 
-	val, ok := bst.Get("05")
+	val, ok := bst.Get("04")
 	if ok != false {
-		t.Error("Key 05 should be deleted!")
+		t.Error("Key 04 should be deleted!")
 	}
 	if val != 0 {
 		t.Errorf("Val should be 0, got %d instead", val)
