@@ -68,6 +68,22 @@ func (bst *binarySearchTree) put(n *node, key string, val int) *node {
 
 func (bst *binarySearchTree) Delete() {}
 
+func (bst *binarySearchTree) DeleteMin() {
+	bst.root = deleteMin(bst.root)
+}
+
+// go left until finding a node with a nil left link
+// replace that node by its right link
+// update subtree counts
+func deleteMin(n *node) *node {
+	if n.left == nil {
+		return n.right
+	}
+	n.left = deleteMin(n.left)
+	n.count = 1 + n.left.size() + n.right.size()
+	return n
+}
+
 func (bst *binarySearchTree) Rank(key string) int {
 	return bst.rank(key, bst.root)
 }

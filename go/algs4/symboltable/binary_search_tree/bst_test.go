@@ -12,6 +12,26 @@ func TestPut(t *testing.T) {
 	bst.Put("charlie", 108)
 }
 
+func TestDeleteMin(t *testing.T) {
+	bst := prepareAnotherBst()
+	oldSize := bst.root.size()
+	min := bst.Min()
+	if min != "a" {
+		t.Errorf("Incorrect min! Expected: \"alpha\"; Received: \"%s\"", min)
+	}
+	bst.DeleteMin()
+	newMin := bst.Min()
+	if min == newMin {
+		t.Error("min was not deleted")
+	}
+	if newMin != "a1" {
+		t.Error("expected a1, got sth else")
+	}
+	if oldSize != bst.root.size()+1 {
+		t.Error("Wrong Size of BST!")
+	}
+}
+
 func TestCount(t *testing.T) {
 	bst := prepareBst()
 	actual := bst.root.count
@@ -92,5 +112,23 @@ func prepareBst() binarySearchTree {
 	bst.Put("sierra", 108)
 	bst.Put("romeo", 108)
 	bst.Put("zulu", 108)
+	return bst
+}
+
+func prepareAnotherBst() binarySearchTree {
+	newNode := node{key: "root", value: 42, count: 1}
+	bst := binarySearchTree{&newNode}
+	bst.Put("alpha", 108)
+	bst.Put("bravo", 108)
+	bst.Put("charlie", 108)
+	bst.Put("sierra", 108)
+	bst.Put("ac", 108)
+	bst.Put("romeo", 108)
+	bst.Put("zulu", 108)
+	bst.Put("b", 108)
+	bst.Put("a", 108)
+	bst.Put("a1", 108)
+	bst.Put("a2", 108)
+	bst.Put("a1a", 108)
 	return bst
 }
