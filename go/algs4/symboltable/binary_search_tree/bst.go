@@ -43,6 +43,20 @@ func (bst *binarySearchTree) Get(key string) (int, bool) {
 	return 0, false
 }
 
+// get a node; true if found, false if not
+func (n *node) get(key string) (*node, bool) {
+	for n != nil {
+		if n.key == key {
+			return n, true
+		} else if key < n.key {
+			n = n.left
+		} else { // key > n.key
+			n = n.right
+		}
+	}
+	return nil, false
+}
+
 // search for key, update if there, add new node if not
 // Tree shape depends on order of insertion. Worst case: No difference to linked list.
 func (bst *binarySearchTree) Put(key string, value int) {
