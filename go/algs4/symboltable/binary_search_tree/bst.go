@@ -133,11 +133,11 @@ func delete(n *node, key string) *node {
 		}
 
 		// replace with successor
-		r := n.right
-		n = r.min()
-		deleteMin(r)
-		n.right = r
-
+		var rightMin node = *n.right.min() // copy value of ptr
+		deleteMin(n.right)
+		rightMin.left = n.left
+		rightMin.right = n.right
+		n = &rightMin
 	}
 	// update count
 	n.count = 1 + n.left.size() + n.right.size()
