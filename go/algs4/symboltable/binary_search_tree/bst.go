@@ -119,10 +119,10 @@ func delete(n *node, key string) *node {
 
 	// search for key:
 	if n.key < key {
-		delete(n.right, key)
+		n.right = delete(n.right, key)
 	} else if n.key > key {
-		delete(n.left, key)
-	} else {
+		n.left = delete(n.left, key)
+	} else { // n.key == key
 		// no right child
 		if n.right == nil {
 			return n.left
