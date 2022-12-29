@@ -99,6 +99,14 @@ Case 2:
 	    Node has two children;
 		Find min in right tree, delete it, and replace current link with min of right tree;
 	    update count.
+
+Problem of Hibbard Deletion:
+		Although randomised bst.Add() will yield a fairly balanced tree,
+		the Hibbard deletion will cause an asymmetry, since we replace with
+		right successor, it tends to skew to the right and be unbalanced
+		over time.
+
+		It's still a problem to find a natural and simple bst.Delete(key)
 */
 func (bst *binarySearchTree) Delete(key string) {
 	bst.root = delete(bst.root, key)
