@@ -22,7 +22,7 @@ func (q *Queue[T]) Enqueue(v T) {
 }
 
 func (q *Queue[T]) Dequeue() (T, bool) {
-	if  q.front == len(q.items) {
+	if  q.IsEmpty() {
 		var v T
 		return v, false
 	}
