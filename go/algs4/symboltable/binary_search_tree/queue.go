@@ -9,6 +9,14 @@ func NewQueue[T any]() *Queue[T] {
 	return &Queue[T]{}
 }
 
+func (q *Queue[T]) Size() int {
+	return len(q.items) - q.front
+}
+
+func (q *Queue[T]) IsEmpty() bool {
+	return q.Size() == 0
+}
+
 func (q *Queue[T]) Enqueue(v T) {
 	q.items = append(q.items, v)
 }
