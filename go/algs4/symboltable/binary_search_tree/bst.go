@@ -108,19 +108,19 @@ Problem of Hibbard Deletion:
 	It's still a problem to find a natural and simple bst.Delete(key)
 */
 func (bst *BinarySearchTree) Delete(key string) {
-	bst.root = delete(bst.root, key)
+	bst.root = bst.root.delete(key)
 }
 
-func delete(n *treeNode, key string) *treeNode {
+func (n *treeNode) delete(key string) *treeNode {
 	if n == nil {
 		return nil
 	}
 
 	// search for key:
 	if n.key < key {
-		n.right = delete(n.right, key)
+		n.right = n.right.delete(key)
 	} else if n.key > key {
-		n.left = delete(n.left, key)
+		n.left = n.left.delete(key)
 	} else { // n.key == key
 		// no right child
 		if n.right == nil {
