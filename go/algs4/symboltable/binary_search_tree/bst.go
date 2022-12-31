@@ -58,18 +58,18 @@ func (n *treeNode) get(key string) (*treeNode, bool) {
 // search for key, update if there, add new node if not
 // Tree shape depends on order of insertion. Worst case: No difference to linked list.
 func (bst *BinarySearchTree) Put(key string, value int) {
-	bst.root = bst.put(bst.root, key, value)
+	bst.root = bst.root.put(key, value)
 }
 
-func (bst *BinarySearchTree) put(n *treeNode, key string, val int) *treeNode {
+func (n *treeNode) put(key string, val int) *treeNode {
 	if n == nil {
 		newNode := treeNode{key: key, value: val, count: 1}
 		return &newNode
 	}
 	if key < n.key {
-		n.left = bst.put(n.left, key, val)
+		n.left = n.left.put(key, val)
 	} else if key > n.key {
-		n.right = bst.put(n.right, key, val)
+		n.right = n.right.put(key, val)
 	} else { // key == n.key
 		n.value = val
 		return n
