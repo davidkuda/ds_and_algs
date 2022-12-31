@@ -172,6 +172,8 @@ func (n *treeNode) deleteMax() *treeNode {
 	return n
 }
 
+// returns the number of nodes with smaller keys than the given key
+// [1,2,3,4,5,6,7] -> rank(3) -> returns 2, 2 smaller nodes than 3
 func (bst *BinarySearchTree) Rank(key string) int {
 	return bst.root.rank(key)
 }

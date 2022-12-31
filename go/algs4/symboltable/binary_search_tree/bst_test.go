@@ -152,9 +152,16 @@ func TestCount(t *testing.T) {
 }
 
 func TestRank(t *testing.T) {
-	bst := prepareBst()
-	r := bst.Rank("delta")
-	expected := 3
+	bst := BinarySearchTree{}
+	bst.Put("1", 1)
+	bst.Put("6", 1)
+	bst.Put("5", 1)
+	bst.Put("3", 1)
+	bst.Put("2", 1)
+	bst.Put("4", 1)
+	bst.Put("7", 1)
+	r := bst.Rank("3")
+	expected := 2
 	if r != expected {
 		t.Errorf("got wrong rank: expected %d, got %d", expected, r)
 	}
