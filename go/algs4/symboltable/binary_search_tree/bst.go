@@ -240,14 +240,14 @@ func (n *treeNode) max() *treeNode {
 // 2) k < node -> floor is in the left subtree
 // 3) k > node -> if k < node in right subtree, right subtree, else node
 func (bst *BinarySearchTree) Floor(key string) (string, bool) {
-	x := bst.floor(bst.root, key)
+	x := floor(bst.root, key)
 	if x == nil {
 		return "", false
 	}
 	return x.key, true
 }
 
-func (bst *BinarySearchTree) floor(x *treeNode, key string) *treeNode {
+func floor(x *treeNode, key string) *treeNode {
 	if x == nil {
 		return nil
 	}
@@ -255,9 +255,9 @@ func (bst *BinarySearchTree) floor(x *treeNode, key string) *treeNode {
 	if x.key == key {
 		return x
 	} else if key < x.key {
-		return bst.floor(x.left, key)
+		return floor(x.left, key)
 	}
-	t := bst.floor(x.right, key)
+	t := floor(x.right, key)
 	if t != nil {
 		return t
 	} else {
