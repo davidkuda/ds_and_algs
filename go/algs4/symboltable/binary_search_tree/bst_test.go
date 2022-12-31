@@ -6,7 +6,7 @@ import (
 
 func TestPut(t *testing.T) {
 	newNode := treeNode{key: "root", value: 42, count: 1}
-	bst := binarySearchTree{&newNode}
+	bst := BinarySearchTree{&newNode}
 	bst.Put("alpha", 108)
 	bst.Put("bravo", 108)
 	bst.Put("charlie", 108)
@@ -21,7 +21,7 @@ func TestDeleteHasRightChild(t *testing.T) {}
 // n has two childs
 func TestDelete(t *testing.T) {
 	root := treeNode{key: "07"}
-	bst := binarySearchTree{root: &root}
+	bst := BinarySearchTree{root: &root}
 	bst.Put("04", 42)
 	bst.Put("05", 42)
 	bst.Put("04a", 42)
@@ -196,9 +196,9 @@ func TestKeys(t *testing.T) {
 	}
 }
 
-func prepareBst() binarySearchTree {
+func prepareBst() BinarySearchTree {
 	newNode := treeNode{key: "root", value: 42, count: 1}
-	bst := binarySearchTree{&newNode}
+	bst := BinarySearchTree{&newNode}
 	bst.Put("alpha", 108)
 	bst.Put("bravo", 108)
 	bst.Put("charlie", 108)
@@ -208,9 +208,9 @@ func prepareBst() binarySearchTree {
 	return bst
 }
 
-func prepareAnotherBst() binarySearchTree {
+func prepareAnotherBst() BinarySearchTree {
 	newNode := treeNode{key: "root", value: 42, count: 1}
-	bst := binarySearchTree{&newNode}
+	bst := BinarySearchTree{&newNode}
 	bst.Put("alpha", 108)
 	bst.Put("bravo", 108)
 	bst.Put("charlie", 108)
