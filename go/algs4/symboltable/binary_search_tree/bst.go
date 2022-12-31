@@ -173,17 +173,17 @@ func (n *treeNode) deleteMax() *treeNode {
 }
 
 func (bst *BinarySearchTree) Rank(key string) int {
-	return bst.rank(key, bst.root)
+	return bst.root.rank(key)
 }
 
-func (bst *BinarySearchTree) rank(key string, n *treeNode) int {
+func (n *treeNode) rank(key string) int {
 	if n == nil {
 		return 0
 	}
 	if key < n.key {
-		return bst.rank(key, n.left)
+		return n.left.rank(key)
 	} else if key > n.key {
-		return 1 + n.left.size() + bst.rank(key, n.right)
+		return 1 + n.left.size() + n.right.rank(key)
 	} else { // key == n.key
 		return n.left.size()
 	}
