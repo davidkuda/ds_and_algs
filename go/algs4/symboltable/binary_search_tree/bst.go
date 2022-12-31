@@ -1,14 +1,14 @@
 package bst
 
 type binarySearchTree struct {
-	root *node
+	root *treeNode
 }
 
-type node struct {
+type treeNode struct {
 	key   string
 	value int
-	left  *node
-	right *node
+	left  *treeNode
+	right *treeNode
 	count int
 }
 
@@ -20,7 +20,7 @@ func (bst *binarySearchTree) Size() int {
 	}
 }
 
-func (n *node) size() int {
+func (n *treeNode) size() int {
 	if n == nil {
 		return 0
 	} else {
@@ -30,7 +30,7 @@ func (n *node) size() int {
 
 // return value and true if key in bst, else return 0 and false
 func (bst *binarySearchTree) Get(key string) (int, bool) {
-	var cur *node = bst.root
+	var cur *treeNode = bst.root
 	for cur != nil {
 		if cur.key == key {
 			return cur.value, true
@@ -44,7 +44,7 @@ func (bst *binarySearchTree) Get(key string) (int, bool) {
 }
 
 // get a node; true if found, false if not
-func (n *node) get(key string) (*node, bool) {
+func (n *treeNode) get(key string) (*treeNode, bool) {
 	for n != nil {
 		if n.key == key {
 			return n, true
@@ -63,9 +63,9 @@ func (bst *binarySearchTree) Put(key string, value int) {
 	bst.root = bst.put(bst.root, key, value)
 }
 
-func (bst *binarySearchTree) put(n *node, key string, val int) *node {
+func (bst *binarySearchTree) put(n *treeNode, key string, val int) *treeNode {
 	if n == nil {
-		newNode := node{key: key, value: val, count: 1}
+		newNode := treeNode{key: key, value: val, count: 1}
 		return &newNode
 	}
 	if key < n.key {
@@ -101,18 +101,19 @@ Case 2:
 	    update count.
 
 Problem of Hibbard Deletion:
-		Although randomised bst.Add() will yield a fairly balanced tree,
-		the Hibbard deletion will cause an asymmetry, since we replace with
-		right successor, it tends to skew to the right and be unbalanced
-		over time.
 
-		It's still a problem to find a natural and simple bst.Delete(key)
+	Although randomised bst.Add() will yield a fairly balanced tree,
+	the Hibbard deletion will cause an asymmetry, since we replace with
+	right successor, it tends to skew to the right and be unbalanced
+	over time.
+
+	It's still a problem to find a natural and simple bst.Delete(key)
 */
 func (bst *binarySearchTree) Delete(key string) {
 	bst.root = delete(bst.root, key)
 }
 
-func delete(n *node, key string) *node {
+func delete(n *treeNode, key string) *treeNode {
 	if n == nil {
 		return nil
 	}
@@ -133,7 +134,7 @@ func delete(n *node, key string) *node {
 		}
 
 		// replace with successor
-		var rightMin node = *n.right.min() // copy value of ptr
+		var rightMin treeNode = *n.right.min() // copy value of ptr
 		deleteMin(n.right)
 		rightMin.left = n.left
 		rightMin.right = n.right
@@ -151,7 +152,7 @@ func (bst *binarySearchTree) DeleteMin() {
 // go left until finding a node with a nil left link
 // replace that node by its right link
 // update subtree counts
-func deleteMin(n *node) *node {
+func deleteMin(n *treeNode) *treeNode {
 	if n.left == nil {
 		return n.right
 	}
@@ -164,7 +165,7 @@ func (bst *binarySearchTree) DeleteMax() {
 	bst.root = deleteMax(bst.root)
 }
 
-func deleteMax(n *node) *node {
+func deleteMax(n *treeNode) *treeNode {
 	if n.right == nil {
 		return n.left
 	}
@@ -177,7 +178,7 @@ func (bst *binarySearchTree) Rank(key string) int {
 	return bst.rank(key, bst.root)
 }
 
-func (bst *binarySearchTree) rank(key string, n *node) int {
+func (bst *binarySearchTree) rank(key string, n *treeNode) int {
 	if n == nil {
 		return 0
 	}
@@ -196,7 +197,7 @@ func (bst *binarySearchTree) Keys() *Queue[string] {
 	return q
 }
 
-func (bst *binarySearchTree) inorder(n *node, q *Queue[string]) {
+func (bst *binarySearchTree) inorder(n *treeNode, q *Queue[string]) {
 	if n == nil {
 		return
 	}
@@ -210,8 +211,8 @@ func (bst *binarySearchTree) Min() string {
 	return bst.root.min().key
 }
 
-func (n *node) min() *node {
-	var previous *node
+func (n *treeNode) min() *treeNode {
+	var previous *treeNode
 	for n != nil {
 		previous = n
 		n = n.left
@@ -224,8 +225,8 @@ func (bst *binarySearchTree) Max() string {
 	return bst.root.max().key
 }
 
-func (n *node) max() *node {
-	var previous *node
+func (n *treeNode) max() *treeNode {
+	var previous *treeNode
 	for n != nil {
 		previous = n
 		n = n.right
@@ -246,7 +247,7 @@ func (bst *binarySearchTree) Floor(key string) (string, bool) {
 	return x.key, true
 }
 
-func (bst *binarySearchTree) floor(x *node, key string) *node {
+func (bst *binarySearchTree) floor(x *treeNode, key string) *treeNode {
 	if x == nil {
 		return nil
 	}
