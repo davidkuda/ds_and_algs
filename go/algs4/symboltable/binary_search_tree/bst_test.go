@@ -12,6 +12,23 @@ func TestPut(t *testing.T) {
 	bst.Put("charlie", 108)
 }
 
+func TestTreeNodeGet(t *testing.T) {
+	bst := prepareAnotherBst()
+	v1, ok := bst.root.get("zva")
+	if !ok {
+		t.Error("Value was not found")
+	}
+
+	v2, ok := bst.root.get("ac")
+	if !ok {
+		t.Error("Value was not found")
+	}
+
+	if v1.value != v2.value {
+		t.Errorf("Expected both values to be 108, got %d and %d instead", v1.value, v2.value)
+	}
+}
+
 // n has left child
 func TestDeleteHasLeftChild(t *testing.T) {}
 
