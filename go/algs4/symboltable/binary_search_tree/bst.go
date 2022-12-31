@@ -1,9 +1,11 @@
 package bst
 
-type binarySearchTree struct {
+// methods on the bst will be public
+type BinarySearchTree struct {
 	root *treeNode
 }
 
+// methods on the treeNode will be private
 type treeNode struct {
 	key   string
 	value int
@@ -12,7 +14,7 @@ type treeNode struct {
 	count int
 }
 
-func (bst *binarySearchTree) Size() int {
+func (bst *BinarySearchTree) Size() int {
 	if bst.root == nil {
 		return 0
 	} else {
@@ -29,7 +31,7 @@ func (n *treeNode) size() int {
 }
 
 // return value and true if key in bst, else return 0 and false
-func (bst *binarySearchTree) Get(key string) (int, bool) {
+func (bst *BinarySearchTree) Get(key string) (int, bool) {
 	var cur *treeNode = bst.root
 	for cur != nil {
 		if cur.key == key {
@@ -59,11 +61,11 @@ func (n *treeNode) get(key string) (*treeNode, bool) {
 
 // search for key, update if there, add new node if not
 // Tree shape depends on order of insertion. Worst case: No difference to linked list.
-func (bst *binarySearchTree) Put(key string, value int) {
+func (bst *BinarySearchTree) Put(key string, value int) {
 	bst.root = bst.put(bst.root, key, value)
 }
 
-func (bst *binarySearchTree) put(n *treeNode, key string, val int) *treeNode {
+func (bst *BinarySearchTree) put(n *treeNode, key string, val int) *treeNode {
 	if n == nil {
 		newNode := treeNode{key: key, value: val, count: 1}
 		return &newNode
@@ -109,7 +111,7 @@ Problem of Hibbard Deletion:
 
 	It's still a problem to find a natural and simple bst.Delete(key)
 */
-func (bst *binarySearchTree) Delete(key string) {
+func (bst *BinarySearchTree) Delete(key string) {
 	bst.root = delete(bst.root, key)
 }
 
@@ -145,7 +147,7 @@ func delete(n *treeNode, key string) *treeNode {
 	return n
 }
 
-func (bst *binarySearchTree) DeleteMin() {
+func (bst *BinarySearchTree) DeleteMin() {
 	bst.root = deleteMin(bst.root)
 }
 
@@ -161,7 +163,7 @@ func deleteMin(n *treeNode) *treeNode {
 	return n
 }
 
-func (bst *binarySearchTree) DeleteMax() {
+func (bst *BinarySearchTree) DeleteMax() {
 	bst.root = deleteMax(bst.root)
 }
 
@@ -174,11 +176,11 @@ func deleteMax(n *treeNode) *treeNode {
 	return n
 }
 
-func (bst *binarySearchTree) Rank(key string) int {
+func (bst *BinarySearchTree) Rank(key string) int {
 	return bst.rank(key, bst.root)
 }
 
-func (bst *binarySearchTree) rank(key string, n *treeNode) int {
+func (bst *BinarySearchTree) rank(key string, n *treeNode) int {
 	if n == nil {
 		return 0
 	}
@@ -191,13 +193,13 @@ func (bst *binarySearchTree) rank(key string, n *treeNode) int {
 	}
 }
 
-func (bst *binarySearchTree) Keys() *Queue[string] {
+func (bst *BinarySearchTree) Keys() *Queue[string] {
 	q := NewQueue[string]()
 	bst.inorder(bst.root, q)
 	return q
 }
 
-func (bst *binarySearchTree) inorder(n *treeNode, q *Queue[string]) {
+func (bst *BinarySearchTree) inorder(n *treeNode, q *Queue[string]) {
 	if n == nil {
 		return
 	}
@@ -207,7 +209,7 @@ func (bst *binarySearchTree) inorder(n *treeNode, q *Queue[string]) {
 }
 
 // Smallest key in symbol table: Move to the left most node
-func (bst *binarySearchTree) Min() string {
+func (bst *BinarySearchTree) Min() string {
 	return bst.root.min().key
 }
 
@@ -221,7 +223,7 @@ func (n *treeNode) min() *treeNode {
 }
 
 // Largest key in symbol table: Move to the right most node
-func (bst *binarySearchTree) Max() string {
+func (bst *BinarySearchTree) Max() string {
 	return bst.root.max().key
 }
 
@@ -239,7 +241,7 @@ func (n *treeNode) max() *treeNode {
 // 1) k == node -> floor is k
 // 2) k < node -> floor is in the left subtree
 // 3) k > node -> if k < node in right subtree, right subtree, else node
-func (bst *binarySearchTree) Floor(key string) (string, bool) {
+func (bst *BinarySearchTree) Floor(key string) (string, bool) {
 	x := bst.floor(bst.root, key)
 	if x == nil {
 		return "", false
@@ -247,7 +249,7 @@ func (bst *binarySearchTree) Floor(key string) (string, bool) {
 	return x.key, true
 }
 
-func (bst *binarySearchTree) floor(x *treeNode, key string) *treeNode {
+func (bst *BinarySearchTree) floor(x *treeNode, key string) *treeNode {
 	if x == nil {
 		return nil
 	}
@@ -266,6 +268,6 @@ func (bst *binarySearchTree) floor(x *treeNode, key string) *treeNode {
 }
 
 // Smallest key >= to a given key
-func (bst *binarySearchTree) Ceiling(key string) string {
+func (bst *BinarySearchTree) Ceiling(key string) string {
 	return ""
 }
