@@ -193,17 +193,17 @@ func (n *treeNode) rank(key string) int {
 
 func (bst *BinarySearchTree) Keys() *Queue[string] {
 	q := NewQueue[string]()
-	bst.inorder(bst.root, q)
+	bst.root.inorder(q)
 	return q
 }
 
-func (bst *BinarySearchTree) inorder(n *treeNode, q *Queue[string]) {
+func (n *treeNode) inorder(q *Queue[string]) {
 	if n == nil {
 		return
 	}
-	bst.inorder(n.left, q)
+	n.left.inorder(q)
 	q.Enqueue(n.key)
-	bst.inorder(n.right, q)
+	n.right.inorder(q)
 }
 
 // Smallest key in symbol table: Move to the left most node
