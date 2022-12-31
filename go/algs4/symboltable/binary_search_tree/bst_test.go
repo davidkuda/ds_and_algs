@@ -24,19 +24,20 @@ func TestDelete(t *testing.T) {
 	bst := binarySearchTree{root: &root}
 	bst.Put("04", 42)
 	bst.Put("05", 42)
+	bst.Put("04a", 42)
 	bst.Put("06", 42)
 	bst.Put("03", 42)
 	bst.Put("09", 42)
 	bst.Put("08", 42)
 	bst.Put("10", 42)
 	/*
-	        07
-		  /     \
-		04      09
-	  /   \    /  \
-	03    05  08   10
-        /   \
-	  04a    06
+			        07
+				  /     \
+				04      09
+			  /   \    /  \
+			03    05  08   10
+		        /   \
+			  04a    06
 	*/
 
 	if bst.root.left.key != "04" {
@@ -48,26 +49,27 @@ func TestDelete(t *testing.T) {
 	}
 
 	bst.Delete("04")
+	// expected:
 	/*
-	        07
-		  /     \
-		04a     09
-	  /   \    /  \
-	03    05  08   10
-            \
-	         06
+			        07
+				  /     \
+				04a     09
+			  /   \    /  \
+			03    05  08   10
+		            \
+			         06
 	*/
 
 	if bst.root.left.key != "04a" {
-		t.Error("Deletion yielded unexpected result")
+		t.Errorf("Deletion yielded unexpected result, expected n.key{04a}, got %s", bst.root.left.key)
 	}
 
 	if bst.root.left.right.left != nil {
-		t.Error("Deletion yileded unexpected result")
+		t.Errorf("Deletion yileded unexpected result, expected nil, got %s", bst.root.left.right.left.key)
 	}
 
-	if bst.Size() != 7 {
-		t.Errorf("Size is incorrect, expected 7, got %d", bst.Size())
+	if bst.Size() != 8 {
+		t.Errorf("Size is incorrect, expected 8, got %d", bst.Size())
 	}
 
 	val, ok := bst.Get("04")
