@@ -133,7 +133,7 @@ func (n *treeNode) delete(key string) *treeNode {
 
 		// replace with successor
 		var rightMin treeNode = *n.right.min() // copy value of ptr
-		deleteMin(n.right)
+		n.right.deleteMin()
 		rightMin.left = n.left
 		rightMin.right = n.right
 		n = &rightMin
@@ -144,30 +144,30 @@ func (n *treeNode) delete(key string) *treeNode {
 }
 
 func (bst *BinarySearchTree) DeleteMin() {
-	bst.root = deleteMin(bst.root)
+	bst.root = bst.root.deleteMin()
 }
 
 // go left until finding a node with a nil left link
 // replace that node by its right link
 // update subtree counts
-func deleteMin(n *treeNode) *treeNode {
+func (n *treeNode) deleteMin() *treeNode {
 	if n.left == nil {
 		return n.right
 	}
-	n.left = deleteMin(n.left)
+	n.left = n.left.deleteMin()
 	n.count = 1 + n.left.size() + n.right.size()
 	return n
 }
 
 func (bst *BinarySearchTree) DeleteMax() {
-	bst.root = deleteMax(bst.root)
+	bst.root = bst.root.deleteMax()
 }
 
-func deleteMax(n *treeNode) *treeNode {
+func (n *treeNode) deleteMax() *treeNode {
 	if n.right == nil {
 		return n.left
 	}
-	n.right = deleteMax(n.right)
+	n.right = n.right.deleteMax()
 	n.count = 1 + n.left.size() + n.right.size()
 	return n
 }
