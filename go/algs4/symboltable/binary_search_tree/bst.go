@@ -15,11 +15,7 @@ type treeNode struct {
 }
 
 func (bst *BinarySearchTree) Size() int {
-	if bst.root == nil {
-		return 0
-	} else {
-		return bst.root.count
-	}
+	return bst.root.size()
 }
 
 func (n *treeNode) size() int {
