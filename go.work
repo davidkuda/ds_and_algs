@@ -1,0 +1,9 @@
+go 1.19
+
+use (
+	./go/algs4/heap
+	./go/algs4/symboltable
+	./go/data_structures/queue
+	./go/data_structures/queue/linked_queue
+	./go/data_structures/stack
+)
