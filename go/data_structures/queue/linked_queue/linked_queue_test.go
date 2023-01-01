@@ -1,10 +1,10 @@
-package queue
+package linkedqueue
 
 import "testing"
 
 func TestQueue(t *testing.T) {
 	expected := [3]string{"first", "second", "third"}
-	q := Queue{}
+	q := Queue[string]{}
 	q.Enqueue("first")
 	q.Enqueue("second")
 	q.Enqueue("third")
