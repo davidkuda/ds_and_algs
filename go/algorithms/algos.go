@@ -1,5 +1,24 @@
 package algos
 
+// --- SortingAlgorithms
+
+// func selectionSort[T comparable](a []T) []T {
+func selectionSort(a []int) []int {
+	N := len(a)
+	for i := 0; i < N; i++ {
+		// identify min
+		min := i
+		for j := i+1; j < N; j++ {
+			if a[j] < a[min] {
+				min = j
+			}
+		}
+		// exchange
+		a[i], a[min] = a[min], a[i]
+	}
+	return a
+}
+
 // --- LinkedLists
 
 type ListNode struct {
