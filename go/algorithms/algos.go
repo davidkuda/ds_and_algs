@@ -1,9 +1,10 @@
 package algos
 
+import "golang.org/x/exp/constraints"
+
 // --- SortingAlgorithms
 
-// func selectionSort[T comparable](a []T) []T {
-func selectionSort(a []int) {
+func selectionSort[T constraints.Ordered](a []T) {
 	N := len(a)
 	for i := 0; i < N; i++ {
 		// identify min
