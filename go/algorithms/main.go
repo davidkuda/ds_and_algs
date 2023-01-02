@@ -28,3 +28,15 @@ func reverseList2(head *ListNode) *ListNode {
     }
     return r
 }
+
+func middleNode(head *ListNode) *ListNode {
+    mid := head
+    for head != nil {
+        if head.Next == nil {
+            break
+        }
+        mid = mid.Next
+        head = head.Next.Next
+    }
+    return mid
+}
