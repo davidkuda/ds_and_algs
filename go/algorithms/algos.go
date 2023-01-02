@@ -32,6 +32,24 @@ func InsertionSort[T constraints.Ordered](a []T) {
 	}
 }
 
+func ShellSort[T constraints.Ordered](a []T) {
+	N := len(a)
+	h := 1
+
+	for h < N/3 {
+		h = 3*h + 1 // 1, 4, 13, 40, 121, 364, ..
+	}
+
+	for h >= 1 {
+		for i := h; i < N; i++ {
+			for j := i; j >= h && a[j] < a[j-h]; j -= h {
+				a[j], a[j-h] = a[j-h], a[j]
+			}
+		}
+		h = h / 3
+	}
+}
+
 // --- LinkedLists
 
 type ListNode struct {
