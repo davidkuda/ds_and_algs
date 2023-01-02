@@ -26,8 +26,6 @@ type ListNode struct {
 	Next *ListNode
 }
 
-// --- reverse linked list
-
 // reverse by creating a new Node
 func reverseList1(head *ListNode) *ListNode {
 	var n *ListNode
