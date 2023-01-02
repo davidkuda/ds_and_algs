@@ -19,6 +19,17 @@ func selectionSort[T constraints.Ordered](a []T) {
 	}
 }
 
+func InsertionSort[T constraints.Ordered](a []T) {
+	N := len(a)
+	for i := 0; i < N; i++ {
+		for j := i; j > 0; j-- {
+			if a[j] < a[j-1] {
+				a[j], a[j-1] = a[j-1], a[j]
+			}
+		}
+	}
+}
+
 // --- LinkedLists
 
 type ListNode struct {
