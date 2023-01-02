@@ -3,7 +3,7 @@ package algos
 // --- SortingAlgorithms
 
 // func selectionSort[T comparable](a []T) []T {
-func selectionSort(a []int) []int {
+func selectionSort(a []int) {
 	N := len(a)
 	for i := 0; i < N; i++ {
 		// identify min
@@ -16,7 +16,6 @@ func selectionSort(a []int) []int {
 		// exchange
 		a[i], a[min] = a[min], a[i]
 	}
-	return a
 }
 
 // --- LinkedLists
