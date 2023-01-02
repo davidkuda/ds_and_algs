@@ -4,12 +4,12 @@ import "golang.org/x/exp/constraints"
 
 // --- SortingAlgorithms
 
-func selectionSort[T constraints.Ordered](a []T) {
+func SelectionSort[T constraints.Ordered](a []T) {
 	N := len(a)
 	for i := 0; i < N; i++ {
 		// identify min
 		min := i
-		for j := i+1; j < N; j++ {
+		for j := i + 1; j < N; j++ {
 			if a[j] < a[min] {
 				min = j
 			}

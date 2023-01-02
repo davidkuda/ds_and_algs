@@ -4,7 +4,7 @@ import "testing"
 
 func TestSelectionSort(t *testing.T) {
 	nums := []int{10, 21, 7, 5, 3, 12, 8}
-	selectionSort(nums)
+	SelectionSort(nums)
 	expected := []int{3, 5, 7, 8, 10, 12, 21}
 	for i := range nums {
 		if nums[i] != expected[i] {
