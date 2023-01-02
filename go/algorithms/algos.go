@@ -1,6 +1,10 @@
 package algos
 
-import "golang.org/x/exp/constraints"
+import (
+	"math/rand"
+
+	"golang.org/x/exp/constraints"
+)
 
 // --- SortingAlgorithms
 
@@ -47,6 +51,13 @@ func ShellSort[T constraints.Ordered](a []T) {
 			}
 		}
 		h = h / 3
+	}
+}
+
+func Shuffle[T constraints.Ordered](a []T) {
+	for i := range a {
+		r := rand.Intn(i + 1)
+		a[i], a[r] = a[r], a[i]
 	}
 }
 

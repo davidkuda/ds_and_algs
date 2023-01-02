@@ -37,3 +37,19 @@ func TestShellSort(t *testing.T) {
 		}
 	}
 }
+
+func TestShuffle(t *testing.T) {
+	nums := []int{3, 5, 7, 8, 10, 12, 21}
+	Shuffle(nums)
+	notExpected := []int{3, 5, 7, 8, 10, 12, 21}
+	var different bool
+	for i := range nums {
+		if nums[i] == notExpected[i] {
+			different = true
+			break
+		}
+	}
+	if !different {
+		t.Errorf("Nums were not sorted correctly;\nexpected: %v\nactual: %v", notExpected, nums)
+	}
+}
