@@ -20,3 +20,22 @@ func TestMaxPQ(t *testing.T) {
 		t.Errorf("Expected max to be 21, but was %d", max)
 	}
 }
+
+func TestParent(t *testing.T) {
+	
+	if parent(0) != 0 {
+		t.Errorf("Failed to get parent, exp 0, got %d", parent(0))
+	}
+
+	if parent(1) != 0 {
+		t.Errorf("Failed to get parent, exp 0, got %d", parent(1))
+	}
+
+	if parent(2) != 0 {
+		t.Errorf("Failed to get parent, exp 0, got %d", parent(2))
+	}
+
+	if parent(3) != 1 {
+		t.Errorf("Failed to get parent, exp 0, got %d", parent(3))
+	}
+}

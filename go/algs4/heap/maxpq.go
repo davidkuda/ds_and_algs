@@ -34,3 +34,16 @@ func (pq *MaxPriorityQueue[T]) DelMax() T {
 func (pq *MaxPriorityQueue[T]) swim() {}
 
 func (pq *MaxPriorityQueue[T]) sink() {}
+
+func parent(k int) int {
+	return (k - 1) / 2
+}
+
+func leftChild(k int) int {
+	return k*2 + 1
+}
+
+func rightChild(k int) int {
+	return k*2 + 2
+}
+
