@@ -24,7 +24,7 @@ func (pq *MaxPriorityQueue[T]) IsEmpty() bool {
 	return pq.Size() == 0
 }
 
-func (pq *MaxPriorityQueue[T]) Insert() {}
+func (pq *MaxPriorityQueue[T]) Insert(v int) {}
 
 func (pq *MaxPriorityQueue[T]) DelMax() T {
 	var r T
