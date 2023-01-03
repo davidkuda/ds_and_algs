@@ -12,8 +12,8 @@ func TestNaivePQ(t *testing.T) {
 	pq.Insert(54)
 	pq.Insert(81)
 
-	if pq.N != 5 {
-		t.Errorf("Expected size of pq to be 5, but was %d", pq.N)
+	if pq.Size() != 5 {
+		t.Errorf("Expected size of pq to be 5, but was %d", pq.Size())
 	}
 
 	max := pq.DelMax()
@@ -21,7 +21,7 @@ func TestNaivePQ(t *testing.T) {
 		t.Errorf("Got wrong max, expeced 108, got %d", max)
 	}
 
-	if pq.N != 4 {
-		t.Errorf("Expected size of pq to be 4, but was %d", pq.N)
+	if pq.Size() != 4 {
+		t.Errorf("Expected size of pq to be 4, but was %d", pq.Size())
 	}
 }
