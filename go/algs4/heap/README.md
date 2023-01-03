@@ -6,13 +6,17 @@ Priority Queue: Remove the largest (or smallest) item.
 
 ## Basic API
 
-Requirement: items must be comparable
+Requirement: items must be comparable, and immutable
 
 - pq.Insert(key T)
 - pq.DelMax() -> key T: Return and remove the largest key
 - pq.IsEmpty() -> bool
 - pq.Max() -> key T: Return the highest Key
 - pq.Size() -> int: number of entries in the pq
+
+other operations:
+- Remove an arbitrary item
+- Change the priority of an item
 
 ## Heaps
 
@@ -23,15 +27,10 @@ Requirement: items must be comparable
 - insert -> at the end of array, then swim new value
 - sink operation: move parent downward until in right position by exchanging with the largest of its two children
 - DelMax -> remove pq[0], put pq[N] at pq[0], swim until order restored
-
-```go
-func (h *heap) swim(k int) {
-    for k > 1 && k/2 < k {
-        k, k/2 = k/2, k
-        k = k/2
-    }
-}
-```
+- Time Complexity of the API:
+    - Insert: O(logN)
+    - DelMax: O(logN)
+    - Max: O(1)
 
 ```go
 
