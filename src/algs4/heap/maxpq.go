@@ -106,3 +106,6 @@ func (pq *MaxPriorityQueue[T]) rightChild(k int) T {
 	return pq.items[rightChildIndex(k)]
 }
 
+func (pq *MaxPriorityQueue[T]) swap(i, j int) {
+	pq.items[i], pq.items[j] = pq.items[j], pq.items[i]
+}
