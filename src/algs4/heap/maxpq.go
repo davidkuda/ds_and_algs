@@ -52,6 +52,8 @@ func (pq *MaxPriorityQueue[T]) Insert(item T) {
 	pq.swim(N) // aka heapifyUp
 }
 
+// --- Helper Functions
+
 // aka "heapifyUp"
 func (pq *MaxPriorityQueue[T]) swim(k int) {
 	for k > 0 && pq.items[k] > pq.parent(k) {
@@ -62,7 +64,9 @@ func (pq *MaxPriorityQueue[T]) swim(k int) {
 
 func (pq *MaxPriorityQueue[T]) sink() {}
 
-// --- Helper Functions
+func (pq *MaxPriorityQueue[T]) swap(i, j int) {
+	pq.items[i], pq.items[j] = pq.items[j], pq.items[i]
+}
 
 // Parent
 
@@ -104,8 +108,4 @@ func (pq *MaxPriorityQueue[T]) hasRightChild(k int) bool {
 
 func (pq *MaxPriorityQueue[T]) rightChild(k int) T {
 	return pq.items[rightChildIndex(k)]
-}
-
-func (pq *MaxPriorityQueue[T]) swap(i, j int) {
-	pq.items[i], pq.items[j] = pq.items[j], pq.items[i]
 }
