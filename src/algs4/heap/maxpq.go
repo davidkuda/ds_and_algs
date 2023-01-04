@@ -34,10 +34,21 @@ func (pq *MaxPriorityQueue[T]) Peek() (max T, ok bool) {
 	}
 }
 
+// aka pq.DelMax -> Remove Max from PQ
+func (pq *MaxPriorityQueue[T]) Poll() (max T, ok bool) {
+	if pq.IsEmpty() {
+		var defaultVal T
+		return defaultVal, false
+	}
+	max = pq.items[0]
+	pq.swap(0, len(pq.items)-1)
+	heapifyDown()
+	return max, true
+}
+
 
 func (pq *MaxPriorityQueue[T]) DelMax() T {
-	var r T
-	return r
+	pq.swim(len(pq.items))
 }
 
 func (pq *MaxPriorityQueue[T]) swim() {}
