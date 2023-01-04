@@ -46,12 +46,19 @@ func (pq *MaxPriorityQueue[T]) Poll() (max T, ok bool) {
 	return max, true
 }
 
-
-func (pq *MaxPriorityQueue[T]) DelMax() T {
-	pq.swim(len(pq.items))
+func (pq *MaxPriorityQueue[T]) Insert(item T) {
+	pq.items = append(pq.items, item)
+	N := pq.Size() - 1
+	pq.swim(N) // aka heapifyUp
 }
 
-func (pq *MaxPriorityQueue[T]) swim() {}
+// aka "heapifyUp"
+func (pq *MaxPriorityQueue[T]) swim(k int) {
+	for k > 0 && pq.items[k] > pq.parent(k) {
+		pq.swap(parentIndex(k), k)
+		k = parentIndex(k)
+	}
+}
 
 func (pq *MaxPriorityQueue[T]) sink() {}
 
