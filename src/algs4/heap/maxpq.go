@@ -35,15 +35,47 @@ func (pq *MaxPriorityQueue[T]) swim() {}
 
 func (pq *MaxPriorityQueue[T]) sink() {}
 
-func parent(k int) int {
+// --- Helper Functions
+
+// Parent
+
+func parentIndex(k int) int {
 	return (k - 1) / 2
 }
 
-func leftChild(k int) int {
+func hasParent(k int) bool {
+	return parentIndex(k) >= 0
+}
+
+func (pq *MaxPriorityQueue[T]) parent(k int) T {
+	return pq.items[parentIndex(k)]
+}
+
+// Left Child
+
+func leftChildIndex(k int) int {
 	return k*2 + 1
 }
 
-func rightChild(k int) int {
+func (pq *MaxPriorityQueue[T]) hasLeftChild(k int) bool {
+	return leftChildIndex(k) < len(pq.items)
+}
+
+func (pq *MaxPriorityQueue[T]) leftChild(k int) T {
+	return pq.items[leftChildIndex(k)]
+}
+
+// Right Child
+
+func rightChildIndex(k int) int {
 	return k*2 + 2
+}
+
+func (pq *MaxPriorityQueue[T]) hasRightChild(k int) bool {
+	return rightChildIndex(k) < len(pq.items)
+}
+
+func (pq *MaxPriorityQueue[T]) rightChild(k int) T {
+	return pq.items[rightChildIndex(k)]
 }
 
