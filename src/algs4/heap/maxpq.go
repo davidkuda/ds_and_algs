@@ -24,7 +24,16 @@ func (pq *MaxPriorityQueue[T]) IsEmpty() bool {
 	return pq.Size() == 0
 }
 
-func (pq *MaxPriorityQueue[T]) Insert(v int) {}
+// return max and true if pq.Size > 0; else, return default T val and false
+func (pq *MaxPriorityQueue[T]) Peek() (max T, ok bool) {
+	if pq.IsEmpty() {
+		var defaultVal T
+		return defaultVal, false
+	} else {
+		return pq.items[0], true
+	}
+}
+
 
 func (pq *MaxPriorityQueue[T]) DelMax() T {
 	var r T
