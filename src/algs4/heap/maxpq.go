@@ -42,7 +42,7 @@ func (pq *MaxPriorityQueue[T]) Poll() (max T, ok bool) {
 	}
 	max = pq.items[0]
 	pq.swap(0, len(pq.items)-1)
-	heapifyDown()
+	pq.sink(0)
 	return max, true
 }
 
@@ -62,7 +62,23 @@ func (pq *MaxPriorityQueue[T]) swim(k int) {
 	}
 }
 
-func (pq *MaxPriorityQueue[T]) sink() {}
+// aka "heapifyDown": swap parent with bigger child
+func (pq *MaxPriorityQueue[T]) sink(k int) {
+	// if no left child, then certainly no right child
+	for pq.hasLeftChild(k) {
+		largerChildIndex := leftChildIndex(k)
+		if pq.hasRightChild(k) && pq.rightChild(k) > pq.leftChild(k) {
+			largerChildIndex = rightChildIndex(k)
+		}
+
+		if pq.items[k] > pq.items[largerChildIndex] {
+			break
+		}
+
+		pq.swap(k, largerChildIndex)
+		k = largerChildIndex
+	}
+}
 
 func (pq *MaxPriorityQueue[T]) swap(i, j int) {
 	pq.items[i], pq.items[j] = pq.items[j], pq.items[i]
