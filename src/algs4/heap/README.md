@@ -20,8 +20,14 @@ other operations:
 
 ## Heaps
 
-- parent of node is at k/2
-- children of node is at 2k and 2k+1
+- A Heap can either start at array[0] or at array[1]
+- if array[1]:
+    - parent of node is at k/2
+    - children of node is at 2k and 2k+1
+- if array[0]:
+    - parent -> (k-1) / 2
+    - leftChild -> k*2 + 1
+    - rightChild -> k*2 + 2
 - restore order by exchanging position with parent
 - swim operation: move child upwards until in right position
 - insert -> at the end of array, then swim new value
