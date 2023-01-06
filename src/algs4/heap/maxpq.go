@@ -41,7 +41,9 @@ func (pq *MaxPriorityQueue[T]) Poll() (max T, ok bool) {
 		return defaultVal, false
 	}
 	max = pq.items[0]
-	pq.swap(0, len(pq.items)-1)
+	N := len(pq.items) - 1
+	pq.swap(0, N)
+	pq.items = pq.items[:N]
 	pq.sink(0)
 	return max, true
 }
