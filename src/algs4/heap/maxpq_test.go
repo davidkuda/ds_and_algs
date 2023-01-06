@@ -26,6 +26,14 @@ func TestMaxPQ(t *testing.T) {
 	if pq.Size() != 6 {
 		t.Errorf("Expected len of 6, but got %d", pq.Size())
 	}
+
+	max2, ok := pq.Peek()
+	if !ok {
+		t.Errorf("pq should not be empty")
+	}
+	if max2 != 20 {
+		t.Errorf("Expected 20, got %d", max2)
+	}
 }
 
 func TestParent(t *testing.T) {
