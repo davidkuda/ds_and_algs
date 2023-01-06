@@ -22,6 +22,10 @@ func TestMaxPQ(t *testing.T) {
 	if max != 21 {
 		t.Errorf("Expected max to be 21, but was %d", max)
 	}
+
+	if pq.Size() != 6 {
+		t.Errorf("Expected len of 6, but got %d", pq.Size())
+	}
 }
 
 func TestParent(t *testing.T) {
