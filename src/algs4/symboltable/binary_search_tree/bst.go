@@ -28,17 +28,12 @@ func (n *treeNode) size() int {
 
 // return value and true if key in bst, else return 0 and false
 func (bst *BinarySearchTree) Get(key string) (int, bool) {
-	var cur *treeNode = bst.root
-	for cur != nil {
-		if cur.key == key {
-			return cur.value, true
-		} else if key < cur.key {
-			cur = cur.left
-		} else { // key > cur.key
-			cur = cur.right
-		}
+	n, found := bst.root.get(key)
+	if !found {
+		return 0, false
+	} else {
+		return n.value, true
 	}
-	return 0, false
 }
 
 // get a node; true if found, false if not
