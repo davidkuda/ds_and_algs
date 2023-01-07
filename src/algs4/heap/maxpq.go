@@ -4,6 +4,26 @@ import (
 	"golang.org/x/exp/constraints"
 )
 
+// sorts all items of data in place
+func HeapSort[T constraints.Ordered](data *[]T) {
+	pq := NewMaxPriorityQueue[T](len(*data), len(*data))
+	pq.items = *data
+	sorted := data
+	N := len(pq.items) - 1
+	// first pass: order items so that the array represents a MaxHeap
+	for k := N/2; k >= 0; k-- {
+		pq.sink(k)
+	}
+	// second pass: push max to last element
+	for N > 0 {
+		pq.swap(0, N)
+		pq.items = pq.items[:N]
+		N--
+		pq.sink(0)
+	}
+	pq.items = *sorted
+}
+
 // ? what about capacity? e.g., what if we want to keep only 20 values?
 type MaxPriorityQueue[T constraints.Ordered] struct {
 	items []T
@@ -11,9 +31,9 @@ type MaxPriorityQueue[T constraints.Ordered] struct {
 
 // use this constructor if you know the number of elements that the pq should hold.
 // otherwise, the slice may need to be resized.
-func NewMaxPriorityQueue[T constraints.Ordered](size int) *MaxPriorityQueue[T] {
+func NewMaxPriorityQueue[T constraints.Ordered](size, cap int) *MaxPriorityQueue[T] {
 	return &MaxPriorityQueue[T]{
-		items: make([]T, size),
+		items: make([]T, size, cap),
 	}
 }
 
