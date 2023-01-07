@@ -11,7 +11,7 @@ func HeapSort[T constraints.Ordered](data *[]T) {
 	sorted := data
 	N := len(pq.items) - 1
 	// first pass: order items so that the array represents a MaxHeap
-	for k := N/2; k >= 0; k-- {
+	for k := N / 2; k >= 0; k-- {
 		pq.sink(k)
 	}
 	// second pass: push max to last element

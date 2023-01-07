@@ -63,7 +63,7 @@ func TestHeapSort(t *testing.T) {
 }
 
 func TestParent(t *testing.T) {
-	
+
 	if parentIndex(0) != 0 {
 		t.Errorf("Failed to get parentIndex, exp 0, got %d", parentIndex(0))
 	}
