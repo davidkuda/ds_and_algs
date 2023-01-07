@@ -36,6 +36,32 @@ func TestMaxPQ(t *testing.T) {
 	}
 }
 
+func TestHeapSort(t *testing.T) {
+	nums := []int8{10, 7, 21, 3, 5}
+	expectedNums := []int8{3, 5, 7, 10, 21}
+	HeapSort(&nums)
+	for i, num := range nums {
+		if num != expectedNums[i] {
+			t.Errorf("Sort was unsuccesful, got %v", nums)
+			break
+		}
+	}
+
+	word := "heapsort"
+	data := []rune{}
+	for _, c := range word {
+		data = append(data, c)
+	}
+	HeapSort(&data)
+	expected := []rune{'a', 'e', 'h', 'o', 'p', 'r', 's', 't'}
+	for i := range data {
+		if data[i] != expected[i] {
+			t.Errorf("Sort was unsuccesful, got %c", data)
+			break
+		}
+	}
+}
+
 func TestParent(t *testing.T) {
 	
 	if parentIndex(0) != 0 {
