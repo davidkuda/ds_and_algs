@@ -4,6 +4,10 @@ Stack: Remove the item most recently added.
 Queue: Remove the item least recently added.
 Priority Queue: Remove the largest (or smallest) item.
 
+## Further Resources
+
+- [Fantastic Video Explanation](https://www.youtube.com/watch?v=t0Cq6tVNRBA)
+
 ## Basic API
 
 Requirement: items must be comparable, and immutable
@@ -38,6 +42,23 @@ other operations:
     - DelMax: O(logN)
     - Max: O(1)
 
-```go
+## Heap Sort
 
+- Rearrange an array into a heap
+- Repeatedly place the max element to arr[N] (N = len(arr)-1)
+- Build heap with the "bottom-up" approach ("divide and conquer"), start with smallest sub-heap, and work until heap.items[0]
+
+```go
+// first pass: heap construction using bottom-up method
+N = len(pq.items) - 1
+for k := N/2; k >= 1; k-- {
+    pq.sink(k)
+}
+
+// second pass: sort array by placing largest item at the end
+for N > 0 {
+    pq.exchange(0, N)
+    N--
+    pq.sink(0)
+}
 ```
