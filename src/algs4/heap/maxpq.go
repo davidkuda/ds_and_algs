@@ -4,6 +4,7 @@ import (
 	"golang.org/x/exp/constraints"
 )
 
+// ? what about capacity? e.g., what if we want to keep only 20 values?
 type MaxPriorityQueue[T constraints.Ordered] struct {
 	items []T
 }
