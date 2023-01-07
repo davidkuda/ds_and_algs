@@ -4,7 +4,19 @@ import (
 	"golang.org/x/exp/constraints"
 )
 
-// sorts all items of data in place
+/*
+sorts all items of data in place; In-place sorting in N log N worst-case time
+
+time complexity:
+	Guaranteed O(NlogN): N times we do an O(logN) operation, so its O(NlogN);
+
+space complexity:
+	In-Place sorting: O(1)
+	
+caveat:
+	HeapSort is not used much in practice in comparison to QuickSort, because
+	HeapSort has more work in the inner loop (compare operations, arithmetic operations)
+*/
 func HeapSort[T constraints.Ordered](data *[]T) {
 	pq := NewMaxPriorityQueue[T](len(*data), len(*data))
 	pq.items = *data
