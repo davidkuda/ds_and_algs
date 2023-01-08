@@ -8,6 +8,8 @@ import (
 
 // --- SortingAlgorithms
 
+type ordered constraints.Ordered
+
 func SelectionSort[T constraints.Ordered](a []T) {
 	N := len(a)
 	for i := 0; i < N; i++ {
@@ -59,6 +61,56 @@ func Shuffle[T constraints.Ordered](a []T) {
 		r := rand.Intn(i + 1)
 		a[i], a[r] = a[r], a[i]
 	}
+}
+
+/*
+Basic Plan:
+- Shuffle the Array a (preserving randomness: shuffling is needed for performance guarantee)
+- Partition the Array, so that for some j
+  - entry a[j] is in place,
+  - no larger entry to the left of j
+  - no smaller entry to the right of j
+
+- Sort each piece recursively
+
+Complexity:
+  - Average time: 1.39NlogN; Worst Case: N*N; If you shuffle first, worst case is very unlikely
+  - Space: O(1); Sort in place; but call stack is logN, due to recursive function calls
+  - QuickSort is faster than MergeSort, because the implementation is fairly simple:
+    compare, increase a pointer, swap;
+*/
+func QuickSort[T ordered](a []T) {
+	Shuffle(a)
+	quickSort(a, 0, len(a)-1)
+}
+
+func quickSort[T ordered](a []T, left, right int) {
+	if left >= right {
+		return
+	}
+	pivot := a[(left+right)/2]
+	partitionPoint := partition(a, left, right, pivot)
+	quickSort(a, left, partitionPoint-1)
+	quickSort(a, partitionPoint+1, right)
+}
+
+func partition[T ordered](a []T, left, right int, pivot T) int {
+	for left <= right {
+		for a[left] < pivot {
+			left++
+		}
+		for a[right] > pivot {
+			right--
+		}
+		if left <= right {
+			a[left], a[right] = a[right], a[left]
+			left++
+			right--
+		}
+	}
+	// return partition point -> where elements on left of partition points are
+	// smaller than the pivot, and the elements to the right are larger.
+	return left
 }
 
 // --- LinkedLists
