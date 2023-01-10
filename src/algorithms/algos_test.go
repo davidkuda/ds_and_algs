@@ -106,22 +106,29 @@ func TestQuickSelectMedian(t *testing.T) {
 	}
 }
 
-func TestQuickSelect(t *testing.T) {
-	nums := []int{10, 21, 7, 5, 3, 12, 8, 42, 3, 25, 3, 30, 24, 4, 8, 9, 10, 18}
-	median := QuickSelect(nums, len(nums)/2)
-	if median != 10 {
-		t.Errorf("Wrong median, expected 10, got %d", median)
+func TestQuickSelectMax(t *testing.T) {
+	nums := []int{10, 21, 7, 5, 3, 12, 8}
+	median := QuickSelect(nums, len(nums)-1)
+	expected := 21
+	if median != expected {
+		t.Errorf("Wrong max, expected %d, got %d", expected, median)
 	}
-	max := QuickSelect(nums, 1)
-	if max != 42 {
-		t.Errorf("Wrong max, expected 42, got %d", max)
+}
+
+func TestQuickSelect2ndMax(t *testing.T) {
+	nums := []int{10, 21, 7, 5, 3, 12, 8}
+	median := QuickSelect(nums, len(nums)-2)
+	expected := 12
+	if median != expected {
+		t.Errorf("Wrong secondMax, expected %d, got %d", expected, median)
 	}
-	secondMax := QuickSelect(nums, 2)
-	if secondMax != 30 {
-		t.Errorf("Wrong max, expected 30, got %d", secondMax)
-	}
-	min := QuickSelect(nums, len(nums))
-	if min != 3 {
-		t.Errorf("Wrong min, expected 3, got %d", min)
+}
+
+func TestQuickSelectMin(t *testing.T) {
+	nums := []int{10, 21, 7, 5, 3, 12, 8}
+	median := QuickSelect(nums, 0)
+	expected := 3
+	if median != expected {
+		t.Errorf("Wrong min, expected %d, got %d", expected, median)
 	}
 }
