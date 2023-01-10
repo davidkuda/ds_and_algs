@@ -107,7 +107,7 @@ func quickSort[T ordered](a []T, left, right int) {
 	pivot := a[pi]
 	partitionPoint := partition(a, left, right, pivot)
 	quickSort(a, left, partitionPoint-1)
-	quickSort(a, partitionPoint+1, right)
+	quickSort(a, partitionPoint, right)
 }
 
 func partition[T ordered](a []T, left, right int, pivot T) int {
