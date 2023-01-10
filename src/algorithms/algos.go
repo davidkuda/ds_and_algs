@@ -108,7 +108,7 @@ func quickSort[T ordered](a []T, left, right int) {
 func partition[T ordered](a []T, left, right int) int {
 	pi := (left + right) / 2
 	pivot := a[pi]
-	for left <= right {
+	for left < right {
 		for a[left] < pivot {
 			left++
 		}
