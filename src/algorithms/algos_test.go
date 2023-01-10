@@ -55,9 +55,9 @@ func TestShuffle(t *testing.T) {
 }
 
 func TestQuickSort(t *testing.T) {
-	nums := []int{10, 21, 7, 5, 3, 12, 8}
+	nums := []int{10, 21, 7, 5, 3, 12, 8, 42, 3, 25, 3, 30, 24, 4, 8, 9, 10, 18}
 	QuickSort(nums)
-	expected := []int{3, 5, 7, 8, 10, 12, 21}
+	expected := []int{3, 3, 3, 4, 5, 7, 8, 8, 9, 10, 10, 12, 18, 21, 24, 25, 30, 42}
 	for i := range nums {
 		if nums[i] != expected[i] {
 			t.Errorf("Nums were not sorted correctly;\nexpected: %v\nactual: %v", expected, nums)
