@@ -63,6 +63,21 @@ func Shuffle[T constraints.Ordered](a []T) {
 	}
 }
 
+func ShuffleReturn[T constraints.Ordered](a []T) []T {
+	for i := range a {
+		r := rand.Intn(i + 1)
+		a[i], a[r] = a[r], a[i]
+	}
+	return a
+}
+
+func ShuffleInPlace[T constraints.Ordered](a *[]T) {
+	for i := range *a {
+		r := rand.Intn(i + 1)
+		(*a)[i], (*a)[r] = (*a)[r], (*a)[i]
+	}
+}
+
 /*
 Basic Plan:
 - Shuffle the Array a (preserving randomness: shuffling is needed for performance guarantee)
