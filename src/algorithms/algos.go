@@ -2,6 +2,7 @@ package algos
 
 import (
 	"math/rand"
+	"time"
 
 	"golang.org/x/exp/constraints"
 )
@@ -57,6 +58,9 @@ func ShellSort[T constraints.Ordered](a []T) {
 }
 
 func Shuffle[T constraints.Ordered](a []T) {
+	// rand.Seed will assure random values; otherwise, rand.Intn will yield same value every time
+	// see https://stackoverflow.com/questions/39529364/go-rand-intn-same-number-value
+	rand.Seed(time.Now().UnixNano())
 	for i := range a {
 		r := rand.Intn(i + 1)
 		a[i], a[r] = a[r], a[i]
