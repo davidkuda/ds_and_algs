@@ -103,14 +103,14 @@ func quickSort[T ordered](a []T, left, right int) {
 	if left >= right {
 		return
 	}
-	pi := (left + right) / 2
-	pivot := a[pi]
-	partitionPoint := partition(a, left, right, pivot)
+	partitionPoint := partition(a, left, right)
 	quickSort(a, left, partitionPoint-1)
 	quickSort(a, partitionPoint, right)
 }
 
-func partition[T ordered](a []T, left, right int, pivot T) int {
+func partition[T ordered](a []T, left, right int) int {
+	pi := (left + right) / 2
+	pivot := a[pi]
 	for left <= right {
 		for a[left] < pivot {
 			left++
