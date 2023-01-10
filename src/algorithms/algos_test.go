@@ -96,3 +96,23 @@ func TestQuickSort(t *testing.T) {
 		}
 	}
 }
+
+func TestQuickSelect(t *testing.T) {
+	nums := []int{10, 21, 7, 5, 3, 12, 8, 42, 3, 25, 3, 30, 24, 4, 8, 9, 10, 18}
+	median := QuickSelect(nums, len(nums)/2)
+	if median != 10 {
+		t.Errorf("Wrong median, expected 10, got %d", median)
+	}
+	max := QuickSelect(nums, 1)
+	if max != 42 {
+		t.Errorf("Wrong max, expected 42, got %d", max)
+	}
+	secondMax := QuickSelect(nums, 2)
+	if secondMax != 30 {
+		t.Errorf("Wrong max, expected 30, got %d", secondMax)
+	}
+	min := QuickSelect(nums, len(nums))
+	if min != 3 {
+		t.Errorf("Wrong min, expected 3, got %d", min)
+	}
+}

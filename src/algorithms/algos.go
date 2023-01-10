@@ -129,6 +129,13 @@ func partition[T ordered](a []T, left, right int, pivot T) int {
 	return left
 }
 
+// return the kth largest element of a slice "a"
+// e.g. k = len(a)/2 == median; k = 1 == max(a)
+func QuickSelect[T ordered](a []T, k int) T {
+	var sol T
+	return sol
+}
+
 // --- LinkedLists
 
 type ListNode struct {
