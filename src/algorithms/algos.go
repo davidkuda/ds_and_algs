@@ -130,6 +130,19 @@ func partition[T ordered](a []T, left, right int) int {
 // e.g. k = len(a)/2 == median; k = 1 == max(a)
 func QuickSelect[T ordered](a []T, k int) T {
 	var sol T
+	Shuffle(a)
+	left, right := 0, len(a)-1
+	for left <= right {
+		i := partition(a, left, right)
+		if i < k {
+			left = i+1
+		} else if i > k {
+			right = i-1
+		} else {
+			sol = a[k]
+			break
+		}
+	}
 	return sol
 }
 
