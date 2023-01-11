@@ -100,21 +100,25 @@ func quickSort[T ordered](a []T, left, right int) {
 	if left >= right {
 		return
 	}
-	partitionPoint := partition(a, left, right)
-	quickSort(a, left, partitionPoint-1)
-	quickSort(a, partitionPoint, right)
+	p := partition(a, left, right)
+	quickSort(a, left, p-1)
+	quickSort(a, p, right)
 }
 
 func partition[T ordered](a []T, left, right int) int {
 	pi := (left + right) / 2
 	pivot := a[pi]
-	for left < right {
+	// iterate over all elements in the slice
+	for left <= right {
+		// find an element that should be on the right side
 		for a[left] < pivot {
 			left++
 		}
+		// find an element that should be on the left side
 		for a[right] > pivot {
 			right--
 		}
+
 		if left <= right {
 			a[left], a[right] = a[right], a[left]
 			left++
@@ -127,17 +131,17 @@ func partition[T ordered](a []T, left, right int) int {
 }
 
 // return the kth largest element of a slice "a"
-// e.g. k = len(a)/2 == median; k = 1 == max(a)
+// e.g. k = len(a)/2 == median; k = len(a)-1 == max(a); k = 0 == min(a)
 func QuickSelect[T ordered](a []T, k int) T {
 	var sol T
 	Shuffle(a)
 	left, right := 0, len(a)-1
 	for left <= right {
-		i := partition(a, left, right)
-		if i < k {
-			left = i+1
-		} else if i > k {
-			right = i-1
+		p := partition(a, left, right)
+		if p < k {
+			left = p + 1
+		} else if p > k {
+			right = p - 1
 		} else {
 			sol = a[k]
 			break
