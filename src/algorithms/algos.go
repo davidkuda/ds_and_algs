@@ -130,6 +130,30 @@ func partition[T ordered](a []T, left, right int) int {
 	return left
 }
 
+func partition2[T ordered](a []T, lo, hi int) int {
+	i, j := lo, hi
+	for {
+		for a[i] < a[lo] {
+			i++
+			if i == hi {
+				break
+			}
+		}
+		for a[lo] < a[j] {
+			j--
+			if j == lo {
+				break
+			}
+		}
+		if i >= j {
+			break
+		}
+		a[i], a[j] = a[j], a[i]
+	}
+	a[lo], a[j] = a[j], a[lo]
+	return j
+}
+
 // return the kth largest element of a slice "a"
 // e.g. k = len(a)/2 == median; k = len(a)-1 == max(a); k = 0 == min(a)
 func QuickSelect[T ordered](a []T, k int) T {
@@ -137,7 +161,7 @@ func QuickSelect[T ordered](a []T, k int) T {
 	Shuffle(a)
 	left, right := 0, len(a)-1
 	for left <= right {
-		p := partition(a, left, right)
+		p := partition2(a, left, right)
 		if p < k {
 			left = p + 1
 		} else if p > k {
