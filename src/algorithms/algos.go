@@ -214,3 +214,55 @@ func middleNode(head *ListNode) *ListNode {
 	}
 	return mid
 }
+
+// --- MATH
+
+// Fibonacci:
+
+// The solution I came up with
+func fibonacci(n int) int {
+    if n == 0 {
+        return 0
+    }
+    a := 0
+    b := 1
+    for i := 1; i < n; i++ {
+        b = a + b
+        a = b - a
+    }
+    return b
+}
+
+// recursive Fibonacci
+func fib(N int) int {
+    if N <= 1 {
+        return N
+    }
+    return fib(N - 1) + fib(N - 2)
+}
+
+// with cache-map
+var cache = map[int]int{0: 0, 1: 1}
+
+func fib2(N int) int {
+    if _, ok := cache[N]; ok {
+        return cache[N]
+    }
+    cache[N] = fib(N - 1) + fib(N - 2)
+    return cache[N]
+}
+
+// cached int array fibonacci
+func fib3(N int) int {
+    if N <= 1 {
+        return N
+    }
+    
+    cache := make([]int, N + 1)
+    cache[1] = 1
+    for i := 2; i <= N; i++ {
+        cache[i] = cache[i - 1] + cache[i - 2]
+    }
+                      
+    return cache[N]
+}
