@@ -10,3 +10,13 @@ func reverse(a []int) {
 		j--
 	}
 }
+
+// rotate left k times, example:
+// rotateLeft([]int{1,2,3}, 1) == []int{2, 3, 1}
+// rotateLeft([]int{1,2,3}, 7) == []int{2, 3, 1}
+func rotateLeft(a []int, k int) {
+	k = k % len(a)
+	reverse(a[:k])
+	reverse(a[k:])
+	reverse(a)
+}
