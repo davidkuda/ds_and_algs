@@ -25,3 +25,15 @@ func TestRotateLeft(t *testing.T) {
 		}
 	}
 }
+
+func TestRotateRight(t *testing.T) {
+	a := []int{1, 2, 3, 4, 5}
+	rotateRight(a, 6)
+	exp := []int{5, 1, 2, 3, 4}
+
+	for i := range a {
+		if a[i] != exp[i] {
+			t.Fatalf("rotateLeft failed: got: %v; expected: %v", a, exp)
+		}
+	}
+}
