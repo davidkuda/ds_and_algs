@@ -4,15 +4,11 @@ import (
 	"cmp"  // new in Go 1.21, see https://stackoverflow.com/a/70562597
 	"math/rand"
 	"time"
-
-	"golang.org/x/exp/constraints"
 )
 
 // --- SortingAlgorithms
 
-type ordered constraints.Ordered
-
-func SelectionSort[T constraints.Ordered](a []T) {
+func SelectionSort[T cmp.Ordered](a []T) {
 	N := len(a)
 	for i := 0; i < N; i++ {
 		// identify min
@@ -27,7 +23,7 @@ func SelectionSort[T constraints.Ordered](a []T) {
 	}
 }
 
-func InsertionSort[T constraints.Ordered](a []T) {
+func InsertionSort[T cmp.Ordered](a []T) {
 	N := len(a)
 	for i := 0; i < N; i++ {
 		for j := i; j > 0; j-- {
@@ -40,7 +36,7 @@ func InsertionSort[T constraints.Ordered](a []T) {
 	}
 }
 
-func ShellSort[T constraints.Ordered](a []T) {
+func ShellSort[T cmp.Ordered](a []T) {
 	N := len(a)
 	h := 1
 
@@ -58,7 +54,7 @@ func ShellSort[T constraints.Ordered](a []T) {
 	}
 }
 
-func Shuffle[T constraints.Ordered](a []T) {
+func Shuffle[T cmp.Ordered](a []T) {
 	// rand.Seed will assure random values; otherwise, rand.Intn will yield same value every time
 	// see https://stackoverflow.com/questions/39529364/go-rand-intn-same-number-value
 	rand.Seed(time.Now().UnixNano())
@@ -68,7 +64,7 @@ func Shuffle[T constraints.Ordered](a []T) {
 	}
 }
 
-func ShuffleReturn[T constraints.Ordered](a []T) []T {
+func ShuffleReturn[T cmp.Ordered](a []T) []T {
 	for i := range a {
 		r := rand.Intn(i + 1)
 		a[i], a[r] = a[r], a[i]
@@ -131,7 +127,7 @@ func partition[T cmp.Ordered](a []T, left, right int) int {
 
 // return the kth largest element of a slice "a"
 // e.g. k = len(a)/2 == median; k = len(a)-1 == max(a); k = 0 == min(a)
-func QuickSelect[T ordered](a []T, k int) T {
+func QuickSelect[T cmp.Ordered](a []T, k int) T {
 	var sol T
 	Shuffle(a)
 	left, right := 0, len(a)-1
