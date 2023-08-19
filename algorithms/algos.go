@@ -127,22 +127,29 @@ func partition[T cmp.Ordered](a []T, left, right int) int {
 
 // return the kth largest element of a slice "a"
 // e.g. k = len(a)/2 == median; k = len(a)-1 == max(a); k = 0 == min(a)
-func QuickSelect[T cmp.Ordered](a []T, k int) T {
-	var sol T
+func QuickSelect(a []int, k int) int {
 	Shuffle(a)
 	left, right := 0, len(a)-1
+	var p int
+
 	for left <= right {
-		p := partition2(a, left, right)
-		if p < k {
-			left = p + 1
-		} else if p > k {
-			right = p - 1
-		} else {
-			sol = a[k]
+		p = partition(a, left, right)
+
+		if p == k {
 			break
 		}
+
+		if p < k {
+			left = p+1
+			continue
+		}
+
+		if k < p {
+			right = p-1
+		}
 	}
-	return sol
+
+	return a[k]
 }
 
 // --- LinkedLists
