@@ -1,6 +1,7 @@
 package algos
 
 import (
+	"cmp"  // new in Go 1.21, see https://stackoverflow.com/a/70562597
 	"math/rand"
 	"time"
 
@@ -91,12 +92,12 @@ Complexity:
   - QuickSort is faster than MergeSort, because the implementation is fairly simple:
     compare, increase a pointer, swap;
 */
-func QuickSort[T ordered](a []T) {
+func QuickSort[T cmp.Ordered](a []T) {
 	Shuffle(a)
 	quickSort(a, 0, len(a)-1)
 }
 
-func quickSort[T ordered](a []T, left, right int) {
+func quickSort[T cmp.Ordered](a []T, left, right int) {
 	if left >= right {
 		return
 	}
@@ -105,52 +106,26 @@ func quickSort[T ordered](a []T, left, right int) {
 	quickSort(a, p, right)
 }
 
-func partition[T ordered](a []T, left, right int) int {
-	pi := (left + right) / 2
-	pivot := a[pi]
-	// iterate over all elements in the slice
-	for left <= right {
-		// find an element that should be on the right side
-		for a[left] < pivot {
-			left++
-		}
-		// find an element that should be on the left side
-		for a[right] > pivot {
-			right--
-		}
+func partition[T cmp.Ordered](a []T, left, right int) int {
+	pivot := a[left]
+	i, j := left+1, right
 
-		if left <= right {
-			a[left], a[right] = a[right], a[left]
-			left++
-			right--
-		}
-	}
-	// return partition point -> where elements on left of partition points are
-	// smaller than the pivot, and the elements to the right are larger.
-	return left
-}
-
-func partition2[T ordered](a []T, lo, hi int) int {
-	i, j := lo, hi
 	for {
-		for a[i] < a[lo] {
+		for i < right && a[i] < pivot {
 			i++
-			if i == hi {
-				break
-			}
 		}
-		for a[lo] < a[j] {
+
+		for j > left && a[j] > pivot {
 			j--
-			if j == lo {
-				break
-			}
 		}
-		if i >= j {
+
+		if j <= i {
 			break
 		}
+
 		a[i], a[j] = a[j], a[i]
 	}
-	a[lo], a[j] = a[j], a[lo]
+	a[left], a[j] = a[j], a[left]
 	return j
 }
 
