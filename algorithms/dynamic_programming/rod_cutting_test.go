@@ -39,3 +39,21 @@ func TestCutRodRecursionOnly(t *testing.T) {
 		}
 	}
 }
+
+func TestCutRodMemoization(t *testing.T) {
+	for _, test := range tests {
+		got := MemoizedCutRod(prices, test.input)
+		if got != test.want {
+			t.Errorf("CutRod(%d) = %d (want %d)", test.input, got, test.want)
+		}
+	}
+}
+
+func TestCutRodBottomUp(t *testing.T) {
+	for _, test := range tests {
+		got := BottomUpCutRod(prices, test.input)
+		if got != test.want {
+			t.Errorf("CutRod(%d) = %d (want %d)", test.input, got, test.want)
+		}
+	}
+}
