@@ -7,7 +7,8 @@ func CutRodForLoop(p []int, n int) int {
 		return 0
 	}
 	var q int
-	// the textbook uses: q := MinInt
+	// the textbook uses: q := MinInt, but since prices are always > 0,
+	// we can use 0 as base q.
 	for i := 1; i <= n; i++ {
 		q = max(q, p[i]+CutRodForLoop(p, n-i))
 	}
