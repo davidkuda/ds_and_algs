@@ -39,18 +39,15 @@ func cr(p []int, n, q, i int) int {
 // 3. a. Dynamic Programming: Memoization / Top Down Approach
 func MemoizedCutRod(p []int, n int) int {
 	r := make([]int, n+1, n+1)
-	for i := range r {
-		r[i] = -1
-	}
 	return MemoizedCutRodAux(p, n, r)
 }
 
 func MemoizedCutRodAux(p []int, n int, r []int) int {
-	if r[n] >= 0 {
+	if r[n] > 0 {
 		return r[n]
 	}
 
-	q := -1
+	var q int
 	if n == 0 {
 		q = 0
 	} else {
