@@ -4,7 +4,8 @@ import (
 	"testing"
 )
 
-var prices = []int{1, 5, 8, 9, 10, 17, 20, 24, 30}
+// - - - - - - - - 0  1  2  3  4   5   6   7   8   9  10 
+var prices = []int{0, 1, 5, 8, 9, 10, 17, 17, 20, 24, 30}
 var tests = []struct {
 	input int
 	want  int
