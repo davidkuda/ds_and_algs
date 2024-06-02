@@ -1,19 +1,27 @@
 package dp
 
-// iterative approach
-func CutRod(p []int, n int) int {
+
+const MaxUint = ^uint(0)
+const MinUint = 0
+const MaxInt = int(MaxUint >> 1)
+const MinInt = -MaxInt - 1
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// 1: Naive approach with a for loop
+func CutRodForLoop(p []int, n int) int {
 	if n == 0 {
 		return 0
 	}
-	q := -1
+	q := MinInt
 	for i := 0; i < n; i++ {
-		q = max(q, p[i]+CutRod(p, n-i-1))
+		q = max(q, p[i]+CutRodForLoop(p, n-i-1))
 	}
 	return q
 }
 
-// avoid iteration, failed attempt
-func CutRod2(p []int, n int) int {
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// 2: Naive approach recursion only (no for loop)
+func CutRodRecursionOnly(p []int, n int) int {
 	q := cr(p, n, 0)
 	return q
 }
@@ -49,7 +57,7 @@ func recursiveCut(p []int, n int, q int, i int) int {
 
 	q = max(
 		q,
-		p[i]+CutRod(p, n-i-1),
+		p[i]+CutRodC(p, n-i-1),
 	)
 
 	return recursiveCut(p, n, q, i+1)
@@ -72,10 +80,10 @@ func recursiveCut0(p []int, n int, q int, i int) int {
 		return q
 	}
 
-	currentMax := p[i] + CutRod(p, n-i)
+	currentMax := p[i] + CutRodChatGPT(p, n-i)
 	if currentMax > q {
 		q = currentMax
 	}
 
-	return recursiveCut(p, n, q, i+1)
+	return recursiveCut0(p, n, q, i+1)
 }

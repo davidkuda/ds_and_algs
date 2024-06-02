@@ -4,32 +4,37 @@ import (
 	"testing"
 )
 
-func TestCutRod(t *testing.T) {
-	prices := []int{1, 5, 8, 9, 10, 17, 20, 24, 30}
-	have := CutRod(prices, 4)
-	want := 13
-	if have != want {
-		t.Fatalf("Failed: Got %v, Want %v", have, want)
+var prices = []int{1, 5, 8, 9, 10, 17, 20, 24, 30}
+var tests = []struct {
+	input int
+	want  int
+}{
+	{1, 1},
+	{2, 5},
+	{3, 8},
+	{4, 10},
+	{5, 13},
+	{6, 17},
+	{7, 18},
+	{8, 22},
+	{9, 25},
+	{10, 30},
+}
+
+func TestCutRodForLoop(t *testing.T) {
+	for _, test := range tests {
+		got := CutRodForLoop(prices, test.input)
+		if got != test.want {
+			t.Errorf("CutRod(%d) = %d (want %d)", test.input, got, test.want)
+		}
 	}
 }
 
-func TestCutRodChatGPT(t *testing.T) {
-	prices := []int{1, 5, 8, 9, 10, 17, 20, 24, 30}
-	have := CutRodChatGPT(prices, 0)
-	want := 1
-
-	if have != want {
-		t.Fatalf("Failed: Got %v, Want %v", have, want)
-	}
-}
-
-func TestCutRodC(t *testing.T) {
-	// doesn't handle 0 correctly
-	prices := []int{1, 5, 8, 9, 10, 17, 20, 24, 30}
-	have := CutRodC(prices, 4)
-	want := 13
-
-	if have != want {
-		t.Fatalf("Failed: Got %v, Want %v", have, want)
+func TestCutRodRecursionOnly(t *testing.T) {
+	for _, test := range tests {
+		got := CutRodRecursionOnly(prices, test.input)
+		if got != test.want {
+			t.Errorf("CutRod(%d) = %d (want %d)", test.input, got, test.want)
+		}
 	}
 }
