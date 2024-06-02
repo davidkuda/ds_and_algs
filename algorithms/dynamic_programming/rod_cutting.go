@@ -49,12 +49,8 @@ func MemoizedCutRodAux(p []int, n int, r []int) int {
 	}
 
 	var q int
-	if n == 0 {
-		q = 0
-	} else {
-		for i := 1; i <= n; i++ {
-			q = max(q, p[i]+MemoizedCutRodAux(p, n-i, r))
-		}
+	for i := 1; i <= n; i++ {
+		q = max(q, p[i]+MemoizedCutRodAux(p, n-i, r))
 	}
 	r[n] = q
 	return q
